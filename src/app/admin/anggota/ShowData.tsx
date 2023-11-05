@@ -2,7 +2,7 @@
 "use client";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
-import useKatalog from "@/stores/crud/Katalog";
+import useAnggota from "@/stores/crud/Anggota";
 import React, { FC, useEffect, useState } from "react";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import Spiner from "@/components/loading/Spiner";
@@ -19,14 +19,14 @@ type Props = {
 };
 
 const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
-  const { setKatalog, dtKatalog } = useKatalog();
+  const { setAnggota, dtAnggota } = useAnggota();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const fetchDataKatalog = async () => {
-    const res = await setKatalog({
+  const fetchDataAnggota = async () => {
+    const res = await setAnggota({
       page,
       limit,
       search,
@@ -34,7 +34,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     setIsLoading(false);
   };
   useEffect(() => {
-    fetchDataKatalog();
+    fetchDataAnggota();
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,7 +42,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // ketika search berubah
   useEffect(() => {
     setPage(1);
-    fetchDataKatalog();
+    fetchDataAnggota();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
@@ -78,7 +78,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
             <TablesDefault
               headTable={headTable}
               tableBodies={tableBodies}
-              dataTable={dtKatalog.data}
+              dataTable={dtAnggota.data}
               page={page}
               limit={limit}
               setEdit={setEdit}
@@ -87,11 +87,11 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               hapus={true}
             />
           </div>
-          {dtKatalog?.last_page > 1 && (
+          {dtAnggota?.last_page > 1 && (
             <div className="mt-4">
               <PaginationDefault
-                currentPage={dtKatalog?.current_page}
-                totalPages={dtKatalog?.last_page}
+                currentPage={dtAnggota?.current_page}
+                totalPages={dtAnggota?.last_page}
                 setPage={setPage}
               />
             </div>

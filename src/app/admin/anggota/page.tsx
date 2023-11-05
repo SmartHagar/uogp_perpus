@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import ShowData from "./ShowData";
 import Form from "./form/Form";
 import ModalDelete from "@/components/modal/ModalDelete";
-import useKatalog from "@/stores/crud/Katalog";
+import useAnggota from "@/stores/crud/Anggota";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
@@ -17,9 +17,9 @@ type Delete = {
   isDelete: boolean;
 };
 
-const Katalog = () => {
+const Anggota = () => {
   // store
-  const { removeData } = useKatalog();
+  const { removeData } = useAnggota();
   // state
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -63,7 +63,7 @@ const Katalog = () => {
           setDelete={setDelete}
         />
         <div className="mb-4 flex justify-between">
-          <p>Silahkan Mengolah data Katalog</p>
+          <p>Silahkan Mengolah data Anggota</p>
           <div>
             <BtnDefault onClick={handleTambah} addClass="btn-primary">
               Tambah
@@ -71,7 +71,7 @@ const Katalog = () => {
           </div>
         </div>
         <InputTextSearch
-          placeholder="Cari Katalog"
+          placeholder="Cari Anggota"
           onChange={(e) => setSearch(e)}
         />
       </div>
@@ -81,4 +81,4 @@ const Katalog = () => {
   );
 };
 
-export default Katalog;
+export default Anggota;

@@ -28,10 +28,16 @@ const getProperty = (obj: any, prop: any) => {
       return moment(obj).format("DD/MM/YYYY");
     }
 
-    if (prop === "image" || prop === "foto") {
+    if (prop === "image" || prop === "foto" || prop === "cover") {
       const image = obj;
-      console.log({ image });
-      const showImage = image ? `${BASE_URL}/${image}` : "/images/no-image.png";
+      // console.log({ image });
+      // periksa 4 karakter pertama
+      const firstFourChars = image ? image.substring(0, 4) : "";
+      // jika string pertama 4 karakternya adalah http
+      let showImage = image ? `${BASE_URL}/${image}` : "/images/no-image.png";
+      if (firstFourChars === "http") {
+        showImage = image;
+      }
       return obj && <Image src={showImage} width={100} height={100} alt="" />;
     }
     if (prop === "link") {

@@ -6,7 +6,7 @@ import toastShow from "@/utils/toast-show";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
-import useKatalog from "@/stores/crud/Katalog";
+import useAnggota from "@/stores/crud/Anggota";
 import BtnDefault from "@/components/button/BtnDefault";
 
 type Props = {
@@ -29,7 +29,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // state
   const [myFile, setMyFile] = useState<any>();
   // store
-  const { addData, updateData } = useKatalog();
+  const { addData, updateData } = useAnggota();
   // hook form
   const {
     register,
@@ -89,7 +89,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
 
   return (
     <ModalDefault
-      title="Form Katalog"
+      title="Form Anggota"
       showModal={showModal}
       setShowModal={setShowModal}
     >

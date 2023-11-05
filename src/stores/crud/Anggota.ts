@@ -5,7 +5,7 @@ import { devtools } from "zustand/middleware";
 import { crud } from "@/services/baseURL";
 import useLogin from "@/stores/auth/login";
 
-// crud katalog
+// crud anggota
 
 type Props = {
   page?: number;
@@ -15,14 +15,14 @@ type Props = {
 };
 
 type Store = {
-  dtKatalog: any;
-  showKatalog: any;
-  setKatalog: ({ page = 1, limit = 10, search, tipe }: Props) => Promise<{
+  dtAnggota: any;
+  showAnggota: any;
+  setAnggota: ({ page = 1, limit = 10, search, tipe }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
   }>;
-  setShowKatalog: (id: string | number) => Promise<{
+  setShowAnggota: (id: string | number) => Promise<{
     status: string;
     data?: {};
     error?: {};
@@ -38,27 +38,26 @@ type Store = {
   setFormData: any;
 };
 
-const useKatalog = create(
+const useAnggota = create(
   devtools<Store>((set, get) => ({
     setFormData: (row: any) => {
       const formData = new FormData();
       formData.append("judul", row.judul);
       formData.append("penulis", row.penulis);
       formData.append("penerbit", row.penerbit);
-      formData.append("jenis", row.jenis);
       formData.append("tahun", row.tahun);
       formData.append("stok", row.stok);
       formData.append("cover", row.cover);
       return formData;
     },
-    dtKatalog: [],
-    showKatalog: [],
-    setKatalog: async ({ page = 1, limit = 10, search, tipe }) => {
+    dtAnggota: [],
+    showAnggota: [],
+    setAnggota: async ({ page = 1, limit = 10, search, tipe }) => {
       try {
         const token = await useLogin.getState().setToken();
         const response = await crud({
           method: "get",
-          url: `/katalog`,
+          url: `/anggota`,
           headers: { Authorization: `Bearer ${token}` },
           params: {
             limit,
@@ -67,7 +66,7 @@ const useKatalog = create(
             tipe,
           },
         });
-        set((state) => ({ ...state, dtKatalog: response.data.data }));
+        set((state) => ({ ...state, dtAnggota: response.data.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -79,16 +78,16 @@ const useKatalog = create(
         };
       }
     },
-    setShowKatalog: async (id) => {
+    setShowAnggota: async (id) => {
       try {
         const token = await useLogin.getState().setToken();
         const response = await crud({
           method: "get",
-          url: `/katalog/${id}`,
+          url: `/anggota/${id}`,
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log({ response });
-        set((state) => ({ ...state, showKatalog: response.data.data }));
+        set((state) => ({ ...state, showAnggota: response.data.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -106,7 +105,7 @@ const useKatalog = create(
         const token = await useLogin.getState().setToken();
         const res = await crud({
           method: "post",
-          url: `/katalog`,
+          url: `/anggota`,
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -114,10 +113,10 @@ const useKatalog = create(
           data: formData,
         });
         set((prevState: any) => ({
-          dtKatalog: {
-            last_page: prevState.dtKatalog.last_page,
-            current_page: prevState.dtKatalog.current_page,
-            data: [res.data.data, ...prevState.dtKatalog.data],
+          dtAnggota: {
+            last_page: prevState.dtAnggota.last_page,
+            current_page: prevState.dtAnggota.current_page,
+            data: [res.data.data, ...prevState.dtAnggota.data],
           },
         }));
         return {
@@ -136,14 +135,14 @@ const useKatalog = create(
         const token = await useLogin.getState().setToken();
         const res = await crud({
           method: "delete",
-          url: `/katalog/${id}`,
+          url: `/anggota/${id}`,
           headers: { Authorization: `Bearer ${token}` },
         });
         set((prevState: any) => ({
-          dtKatalog: {
-            last_page: prevState.dtKatalog.last_page,
-            current_page: prevState.dtKatalog.current_page,
-            data: prevState.dtKatalog.data.filter(
+          dtAnggota: {
+            last_page: prevState.dtAnggota.last_page,
+            current_page: prevState.dtAnggota.current_page,
+            data: prevState.dtAnggota.data.filter(
               (item: any) => item.id !== id
             ),
           },
@@ -169,7 +168,7 @@ const useKatalog = create(
       };
       try {
         const response = await crud({
-          url: `/katalog/${id}`,
+          url: `/anggota/${id}`,
           method: "post",
           headers: row?.cover
             ? headersImg
@@ -182,10 +181,10 @@ const useKatalog = create(
           },
         });
         set((prevState: any) => ({
-          dtKatalog: {
-            last_page: prevState.dtKatalog.last_page,
-            current_page: prevState.dtKatalog.current_page,
-            data: prevState.dtKatalog.data.map((item: any) => {
+          dtAnggota: {
+            last_page: prevState.dtAnggota.last_page,
+            current_page: prevState.dtAnggota.current_page,
+            data: prevState.dtAnggota.data.map((item: any) => {
               if (item.id === id) {
                 return {
                   ...item,
@@ -211,4 +210,4 @@ const useKatalog = create(
   }))
 );
 
-export default useKatalog;
+export default useAnggota;

@@ -3,18 +3,13 @@
  * @type {import('next').NextConfig}
  */
 
+// 127.0.0.1
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    domains: ["127.0.0.1", "images.unsplash.com"],
   },
 };
 

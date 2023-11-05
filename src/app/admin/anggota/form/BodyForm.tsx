@@ -60,17 +60,7 @@ const BodyForm: FC<Props> = ({
         errors={errors.penerbit}
         addClass="col-span-4"
       />
-      <SelectTahun
-        label="Tahun"
-        name="tahun"
-        start={new Date().getFullYear() - 10}
-        end={new Date().getFullYear()}
-        control={control}
-        addClass="col-span-4 lg:col-span-1"
-        placeholder="Pilih"
-        required
-        errors={errors.tahun}
-      />
+
       <SelectDefault
         label="Jenis"
         defaultOption="Pilih Jenis"
@@ -89,7 +79,7 @@ const BodyForm: FC<Props> = ({
         label="stok"
         name="stok"
         register={register}
-        minLength={1}
+        minLength={2}
         required
         errors={errors.stok}
         type="number"

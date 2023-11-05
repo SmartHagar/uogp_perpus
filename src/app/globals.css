@@ -1,27 +1,60 @@
+/** @format */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer components {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --swiper-pagination-color: theme("colors.primary") !important;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hvTopDown {
+    position: relative;
+  }
+
+  .hvTopDown::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: -0.1em;
+    right: -0.1em;
+    top: 100%;
+    transition: top 600ms;
+  }
+
+  .hvTopDown:hover:after {
+    top: 0%;
+  }
+
+  .shadow-right {
+    -webkit-box-shadow: 8px 0 10px -6px theme("colors.base-100");
+    -moz-box-shadow: 8px 0 10px -6px theme("colors.base-100");
+    box-shadow: 0 0 600px 180px theme("colors.base-100");
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  /* add font family  */
+  @font-face {
+    font-family: "Cambria";
+    src: url("/fonts/Cambria.ttf");
+  }
 }

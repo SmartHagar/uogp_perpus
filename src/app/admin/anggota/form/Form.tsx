@@ -8,6 +8,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
 import useAnggota from "@/stores/crud/Anggota";
 import BtnDefault from "@/components/button/BtnDefault";
+import { useSearchParams } from "next/navigation";
+
+// form anggota
 
 type Props = {
   showModal: boolean;
@@ -17,17 +20,21 @@ type Props = {
 
 type Inputs = {
   id: number | string;
-  judul: string;
-  penulis: string;
-  penerbit: string;
-  tahun: string;
-  stok: number;
-  cover: string;
+  prodi_id: string | number;
+  nama: string;
+  NPM: string;
+  jenkel: string;
+  alamat: string;
+  no_hp: string;
+  foto: string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // state
   const [myFile, setMyFile] = useState<any>();
+  // get params
+  const params = useSearchParams();
+  const jenis = (params && params.get("jenis")) || "";
   // store
   const { addData, updateData } = useAnggota();
   // hook form
@@ -43,12 +50,13 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("judul", "");
-    setValue("penulis", "");
-    setValue("penerbit", "");
-    setValue("tahun", "");
-    setValue("stok", 1);
-    setValue("cover", "");
+    setValue("nama", "");
+    setValue("NPM", "");
+    setValue("jenkel", "");
+    setValue("prodi_id", "");
+    setValue("alamat", "");
+    setValue("no_hp", "");
+    setValue("foto", "");
     setMyFile(null);
   };
 
@@ -56,12 +64,13 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("judul", dtEdit.judul);
-      setValue("penulis", dtEdit.penulis);
-      setValue("penerbit", dtEdit.penerbit);
-      setValue("tahun", dtEdit.tahun);
-      setValue("stok", dtEdit.stok);
-      setValue("cover", dtEdit.cover);
+      setValue("nama", dtEdit.nama);
+      setValue("NPM", dtEdit.NPM);
+      setValue("jenkel", dtEdit.jenkel);
+      setValue("prodi_id", parseInt(dtEdit.prodi_id));
+      setValue("alamat", dtEdit.alamat);
+      setValue("no_hp", dtEdit.no_hp);
+      setValue("foto", dtEdit.foto);
     } else {
       resetForm();
     }

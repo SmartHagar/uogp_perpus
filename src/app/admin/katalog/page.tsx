@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
 import BtnDefault from "@/components/button/BtnDefault";
+import { useSearchParams } from "next/navigation";
 
 // type setDelete
 type Delete = {
@@ -26,6 +27,9 @@ const Katalog = () => {
   const [idDel, setIdDel] = useState<number | string>();
   const [dtEdit, setDtEdit] = useState<any>();
   const [search, setSearch] = useState("");
+  // get params
+  const params = useSearchParams();
+  const jenis = params && params.get("jenis");
 
   const handleTambah = () => {
     setShowModal(true);
@@ -63,7 +67,9 @@ const Katalog = () => {
           setDelete={setDelete}
         />
         <div className="mb-4 flex justify-between">
-          <p>Silahkan Mengolah data Katalog</p>
+          <p>
+            Silahkan mengolah data katalog <span>{jenis}</span>
+          </p>
           <div>
             <BtnDefault onClick={handleTambah} addClass="btn-primary">
               Tambah

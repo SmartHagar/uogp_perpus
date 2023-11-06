@@ -6,6 +6,7 @@ import useKatalog from "@/stores/crud/Katalog";
 import React, { FC, useEffect, useState } from "react";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import Spiner from "@/components/loading/Spiner";
+import { useSearchParams } from "next/navigation";
 
 type DeleteProps = {
   id?: number | string;
@@ -24,12 +25,16 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  // get params
+  const params = useSearchParams();
+  const jenis = (params && params.get("jenis")) || "";
 
   const fetchDataKatalog = async () => {
     const res = await setKatalog({
       page,
       limit,
       search,
+      jenis,
     });
     setIsLoading(false);
   };
@@ -38,7 +43,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit]);
+  }, [page, limit, jenis]);
   // ketika search berubah
   useEffect(() => {
     setPage(1);

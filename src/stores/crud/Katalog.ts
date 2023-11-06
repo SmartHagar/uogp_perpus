@@ -11,13 +11,13 @@ type Props = {
   page?: number;
   limit?: number;
   search?: string;
-  tipe?: string;
+  jenis?: string;
 };
 
 type Store = {
   dtKatalog: any;
   showKatalog: any;
-  setKatalog: ({ page = 1, limit = 10, search, tipe }: Props) => Promise<{
+  setKatalog: ({ page = 1, limit = 10, search, jenis }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
@@ -53,7 +53,7 @@ const useKatalog = create(
     },
     dtKatalog: [],
     showKatalog: [],
-    setKatalog: async ({ page = 1, limit = 10, search, tipe }) => {
+    setKatalog: async ({ page = 1, limit = 10, search, jenis }) => {
       try {
         const token = await useLogin.getState().setToken();
         const response = await crud({
@@ -64,7 +64,7 @@ const useKatalog = create(
             limit,
             page,
             search,
-            tipe,
+            jenis,
           },
         });
         set((state) => ({ ...state, dtKatalog: response.data.data }));

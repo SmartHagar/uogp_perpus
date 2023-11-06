@@ -17,11 +17,6 @@ type Store = {
     data?: {};
     error?: {};
   }>;
-  setProdiAll: ({ search }: Props) => Promise<{
-    status: string;
-    data?: {};
-    error?: {};
-  }>;
 };
 
 const useProdiApi = create(
@@ -35,27 +30,6 @@ const useProdiApi = create(
           params: {
             limit,
             page,
-            search,
-          },
-        });
-        set((state) => ({ ...state, dtProdi: response.data }));
-        return {
-          status: "berhasil",
-          data: response.data,
-        };
-      } catch (error: any) {
-        return {
-          status: "error",
-          error: error.response.data,
-        };
-      }
-    },
-    setProdiAll: async ({ search }) => {
-      try {
-        const response = await api({
-          method: "get",
-          url: `/prodi/all`,
-          params: {
             search,
           },
         });

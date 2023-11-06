@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
 import BtnDefault from "@/components/button/BtnDefault";
+import { useSearchParams } from "next/navigation";
 
 // type setDelete
 type Delete = {
@@ -63,7 +64,7 @@ const Anggota = () => {
           setDelete={setDelete}
         />
         <div className="mb-4 flex justify-between">
-          <p>Silahkan Mengolah data Anggota</p>
+          <p>Silahkan mengolah data anggota</p>
           <div>
             <BtnDefault onClick={handleTambah} addClass="btn-primary">
               Tambah

@@ -4,8 +4,8 @@ import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import useAnggota from "@/stores/crud/Anggota";
 import React, { FC, useEffect, useState } from "react";
-import { BsFillInfoCircleFill } from "react-icons/bs";
 import Spiner from "@/components/loading/Spiner";
+import { useSearchParams } from "next/navigation";
 
 type DeleteProps = {
   id?: number | string;
@@ -24,6 +24,9 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  // get params
+  const params = useSearchParams();
+  const jenis = (params && params.get("jenis")) || "";
 
   const fetchDataAnggota = async () => {
     const res = await setAnggota({
@@ -38,7 +41,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit]);
+  }, [page, limit, jenis]);
   // ketika search berubah
   useEffect(() => {
     setPage(1);
@@ -49,21 +52,23 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // table
   const headTable = [
     "No",
-    "Judul",
-    "Penulis",
-    "Penerbit",
-    "Tahun",
-    "Stok",
-    "Cover",
+    "Nama",
+    "NPM",
+    "Prodi",
+    "Jenkel",
+    "Alamat",
+    "No_hp",
+    "Foto",
     "Aksi",
   ];
   const tableBodies = [
-    "judul",
-    "penulis",
-    "penerbit",
-    "tahun",
-    "stok",
-    "cover",
+    "nama",
+    "NPM",
+    "prodi.nama",
+    "jenkel",
+    "alamat",
+    "no_hp",
+    "foto",
   ];
 
   return (

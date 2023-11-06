@@ -1,10 +1,12 @@
 /** @format */
 "use client";
 import InputFile from "@/components/input/InputFile";
+import InputRadio from "@/components/input/InputRadio";
 import InputTextDefault from "@/components/input/InputTextDefault";
-import { SelectDefault } from "@/components/select/SelectDefault";
+import SelectFromDb from "@/components/select/SelectFromDB";
 import SelectTahun from "@/components/select/SelectTahun";
-import React, { FC } from "react";
+import useProdiApi from "@/stores/api/Prodi";
+import React, { FC, useEffect } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -31,70 +33,117 @@ const BodyForm: FC<Props> = ({
   myFile,
   setMyFile,
 }) => {
+  const { setProdi, dtProdi } = useProdiApi();
+  // memanggil data prodi
+  const fetchDataProdi = async ({ search }: any) => {
+    await setProdi({
+      search,
+    });
+  };
+  useEffect(() => {
+    fetchDataProdi({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showModal]);
   return (
     <>
+      {dtProdi?.data && (
+        <SelectFromDb
+          label="Prodi"
+          placeholder="Pilih Prodi"
+          name="prodi_id"
+          dataDb={dtProdi?.data}
+          body={["id", "nama"]}
+          control={control}
+          required
+          errors={errors.prodi_id}
+          addClass="col-span-4 lg:col-span-2"
+        />
+      )}
       <InputTextDefault
-        label="Judul"
-        name="judul"
+        label="NPM"
+        name="NPM"
         register={register}
-        minLength={2}
+        minLength={10}
+        maxLength={10}
         required
-        errors={errors.judul}
-        addClass="col-span-4"
+        errors={errors.NPM}
+        addClass="col-span-4 lg:col-span-2"
+        placeholder="10 digit terakhir dari NPM"
+        type="number"
       />
       <InputTextDefault
-        label="Penulis"
-        name="penulis"
+        label="Nama"
+        name="nama"
         register={register}
         minLength={2}
         required
-        errors={errors.penulis}
-        addClass="col-span-4"
-      />
-      <InputTextDefault
-        label="Penerbit"
-        name="penerbit"
-        register={register}
-        minLength={2}
-        required
-        errors={errors.penerbit}
+        errors={errors.nama}
         addClass="col-span-4"
       />
 
-      <SelectDefault
-        label="Jenis"
-        defaultOption="Pilih Jenis"
+      <InputTextDefault
+        label="No. HP"
+        name="no_hp"
         register={register}
+        minLength={11}
+        maxLength={12}
         required
-        errors={errors}
-        name="jenis"
-        options={[
-          { value: "buku", label: "Buku" },
-          { value: "jurnal", label: "Jurnal" },
-          { value: "tugas akhir", label: "Tugas Akhir" },
-        ]}
+        errors={errors.no_hp}
+        type="number"
         addClass="col-span-4 lg:col-span-2"
       />
+
+      {/* jenkel */}
+      <div className="col-span-4 lg:col-span-2">
+        <div className="w-[100%]">
+          <label className="block py-2 text-sm font-medium text-gray-700 tracking-wide">
+            Jenis Kelamin
+          </label>
+          <div className="flex gap-2">
+            <InputRadio
+              id="Laki-laki"
+              name="jenkel"
+              value="Laki-laki"
+              register={register}
+              required
+              defaultChecked={dtEdit?.jenkel === "Laki-laki"}
+            />
+            <InputRadio
+              id="Perempuan"
+              name="jenkel"
+              value="Perempuan"
+              register={register}
+              required
+              defaultChecked={dtEdit?.jenkel === "Perempuan"}
+            />
+          </div>
+          {errors?.jenkel?.type === "required" && (
+            <p className="text-red-500 font-inter italic text-sm">
+              Jenis kelamin tidak boleh kosong
+            </p>
+          )}
+        </div>
+      </div>
+
       <InputTextDefault
-        label="stok"
-        name="stok"
+        label="Alamat"
+        name="alamat"
         register={register}
-        minLength={2}
+        minLength={1}
         required
-        errors={errors.stok}
-        type="number"
-        addClass="col-span-4 lg:col-span-1"
+        errors={errors.alamat}
+        addClass="col-span-4"
       />
       <InputFile
-        label="Cover"
-        name="cover"
+        label="Foto"
+        name="foto"
         register={register}
         accept="image/*"
         required
-        errors={errors.cover}
+        errors={errors.foto}
         addClass="col-span-4"
         setValue={setValue}
-        fileEdit={dtEdit?.cover}
+        fileEdit={dtEdit?.foto}
         myFile={myFile}
         setMyFile={setMyFile}
       />

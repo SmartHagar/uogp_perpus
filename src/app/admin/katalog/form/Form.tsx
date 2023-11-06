@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
 import useKatalog from "@/stores/crud/Katalog";
 import BtnDefault from "@/components/button/BtnDefault";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   showModal: boolean;
@@ -20,14 +21,18 @@ type Inputs = {
   judul: string;
   penulis: string;
   penerbit: string;
-  tahun: string;
+  tahun: string | number;
   stok: number;
   cover: string;
+  jenis: string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // state
   const [myFile, setMyFile] = useState<any>();
+  // get params
+  const params = useSearchParams();
+  const jenis = (params && params.get("jenis")) || "";
   // store
   const { addData, updateData } = useKatalog();
   // hook form
@@ -59,7 +64,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
       setValue("judul", dtEdit.judul);
       setValue("penulis", dtEdit.penulis);
       setValue("penerbit", dtEdit.penerbit);
-      setValue("tahun", dtEdit.tahun);
+      setValue("tahun", parseInt(dtEdit.tahun));
       setValue("stok", dtEdit.stok);
       setValue("cover", dtEdit.cover);
     } else {
@@ -70,6 +75,8 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // simpan data
   const onSubmit: SubmitHandler<Inputs> = async (row) => {
     console.log({ row });
+    // add jenis in row
+    row.jenis = jenis; // Assuming `jenis` is the value you want to add to `row`
     // jika dtEdit tidak kosong maka update
     if (dtEdit) {
       const { data } = await updateData(dtEdit.id, row);

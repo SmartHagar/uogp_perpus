@@ -28,11 +28,13 @@ const Dashboard = (props: Props) => {
   return (
     <div className="flex flex-col gap-8">
       <div className="h-64 md:h-96 lg:h-[25rem] z-10 flex flex-col">
-        <h4 className="text-xl font-bold text-secondary mb-2">Buku Terbaru</h4>
+        <h4 className="text-xl font-bold text-secondary mb-2">
+          Koleksi Terbaru
+        </h4>
         <Slide delay={2000} slidesPerView={slide} />
       </div>
       <div className="h-64 md:h-96 lg:h-[25rem] z-10 mb-2 flex flex-col">
-        <h4 className="text-xl font-bold text-secondary">Buku Terlaris</h4>
+        <h4 className="text-xl font-bold text-secondary">Koleksi Populer</h4>
         <Slide slidesPerView={slide} />
       </div>
     </div>

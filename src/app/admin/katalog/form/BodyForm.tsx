@@ -2,7 +2,6 @@
 "use client";
 import InputFile from "@/components/input/InputFile";
 import InputTextDefault from "@/components/input/InputTextDefault";
-import { SelectDefault } from "@/components/select/SelectDefault";
 import SelectTahun from "@/components/select/SelectTahun";
 import React, { FC } from "react";
 
@@ -66,24 +65,10 @@ const BodyForm: FC<Props> = ({
         start={new Date().getFullYear() - 10}
         end={new Date().getFullYear()}
         control={control}
-        addClass="col-span-4 lg:col-span-1"
+        addClass="col-span-4 lg:col-span-2"
         placeholder="Pilih"
         required
         errors={errors.tahun}
-      />
-      <SelectDefault
-        label="Jenis"
-        defaultOption="Pilih Jenis"
-        register={register}
-        required
-        errors={errors}
-        name="jenis"
-        options={[
-          { value: "buku", label: "Buku" },
-          { value: "jurnal", label: "Jurnal" },
-          { value: "tugas akhir", label: "Tugas Akhir" },
-        ]}
-        addClass="col-span-4 lg:col-span-2"
       />
       <InputTextDefault
         label="stok"
@@ -93,7 +78,7 @@ const BodyForm: FC<Props> = ({
         required
         errors={errors.stok}
         type="number"
-        addClass="col-span-4 lg:col-span-1"
+        addClass="col-span-4 lg:col-span-2"
       />
       <InputFile
         label="Cover"

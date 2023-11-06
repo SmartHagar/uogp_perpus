@@ -14,8 +14,23 @@ const adminMenus = [
   },
   {
     name: "Katalog",
-    href: "/admin/katalog",
-    icon: <BsFillMortarboardFill />,
+    href: "#",
+    slug: "katalog",
+    icon: <BsPeopleFill />,
+    subMenus: [
+      {
+        name: "Buku",
+        href: "/admin/katalog?jenis=buku",
+      },
+      {
+        name: "Jurnal",
+        href: "/admin/katalog?jenis=jurnal",
+      },
+      {
+        name: "Tugas Akhir",
+        href: "/admin/katalog?jenis=tugas akhir",
+      },
+    ],
   },
   {
     name: "Anggota",

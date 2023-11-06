@@ -34,6 +34,13 @@ const TablesDefault = (props: Props) => {
     let noUrut = (props.page - 1) * props.limit + index;
     return noUrut + 1;
   };
+  if (props?.dataTable?.length === 0) {
+    return (
+      <div className="flex justify-center mt-8">
+        <p>Tidak ada data</p>
+      </div>
+    );
+  }
   return (
     <table className="w-full border-collapse text-left">
       <thead className="">

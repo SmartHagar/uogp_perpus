@@ -43,7 +43,13 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit, jenis]);
+  }, [page, limit]);
+  // ketika jenis berubah
+  useEffect(() => {
+    setPage(1);
+    fetchDataKatalog();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jenis]);
   // ketika search berubah
   useEffect(() => {
     setPage(1);

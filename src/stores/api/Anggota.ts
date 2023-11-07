@@ -3,7 +3,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { api } from "@/services/baseURL";
-// api ruangan
+// api anggota
 type Props = {
   page?: number;
   limit?: number;
@@ -11,34 +11,34 @@ type Props = {
 };
 
 type Store = {
-  dtRuangan: any;
-  setRuangan: ({ page, limit, search }: Props) => Promise<{
+  dtAnggota: any;
+  setAnggota: ({ page, limit, search }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
   }>;
-  setRuanganAll: ({ search }: Props) => Promise<{
+  setAnggotaAll: ({ search }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
   }>;
 };
 
-const useRuanganApi = create(
+const useAnggotaApi = create(
   devtools<Store>((set, get) => ({
-    dtRuangan: [],
-    setRuangan: async ({ page = 1, limit = 10, search }) => {
+    dtAnggota: [],
+    setAnggota: async ({ page = 1, limit = 10, search }) => {
       try {
         const response = await api({
           method: "get",
-          url: `/ruangan`,
+          url: `/anggota`,
           params: {
             limit,
             page,
             search,
           },
         });
-        set((state) => ({ ...state, dtRuangan: response.data }));
+        set((state) => ({ ...state, dtAnggota: response.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -50,16 +50,16 @@ const useRuanganApi = create(
         };
       }
     },
-    setRuanganAll: async ({ search }) => {
+    setAnggotaAll: async ({ search }) => {
       try {
         const response = await api({
           method: "get",
-          url: `/ruangan/all`,
+          url: `/anggota/all`,
           params: {
             search,
           },
         });
-        set((state) => ({ ...state, dtRuangan: response.data }));
+        set((state) => ({ ...state, dtAnggota: response.data }));
         return {
           status: "berhasil",
           data: response.data,
@@ -74,4 +74,4 @@ const useRuanganApi = create(
   }))
 );
 
-export default useRuanganApi;
+export default useAnggotaApi;

@@ -1,9 +1,10 @@
 /** @format */
 "use client";
-import LoadingSpiner from "@/components/loading/LoadingSpiner";
+import Spiner from "@/components/loading/Spiner";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
-import useMatkul from "@/stores/crud/Matkul";
+import useTransaksi from "@/stores/crud/Transaksi";
+import { useSearchParams } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 
 type DeleteProps = {
@@ -18,14 +19,17 @@ type Props = {
 };
 
 const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
-  const { setMatkul, dtMatkul } = useMatkul();
+  const { setTransaksi, dtTransaksi } = useTransaksi();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  // get params
+  const params = useSearchParams();
+  const status = (params && params.get("status")) || "";
 
-  const fetchDataMatkul = async () => {
-    const res = await setMatkul({
+  const fetchDataTransaksi = async () => {
+    const res = await setTransaksi({
       page,
       limit,
       search,
@@ -33,7 +37,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     setIsLoading(false);
   };
   useEffect(() => {
-    fetchDataMatkul();
+    fetchDataTransaksi();
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,32 +45,32 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // ketika search berubah
   useEffect(() => {
     setPage(1);
-    fetchDataMatkul();
+    fetchDataTransaksi();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   // table
-  const headTable = [
-    "No",
-    "Prodi",
-    "Kode",
-    "Matkul",
-    "SKS",
-    "Semester",
-    "Aksi",
-  ];
-  const tableBodies = ["prodi.nama", "kode", "nama", "sks", "semester"];
+  const headTable = ["No", "Anggota", "Judul", "Tgl. Pinjam", "Aksi"];
+  const tableBodies = ["anggota.nama", "katalog.judul", "tgl_pinjam"];
+  // add tgl_kembali in index 5 if status = pengembalian
+  if (status === "pengembalian") {
+    const index = headTable.length - 1;
+    headTable.splice(index, 0, "Tgl. Kembali");
+    tableBodies.splice(index, 0, "tgl_kembali");
+  }
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
       {isLoading ? (
-        <LoadingSpiner />
+        <div className="w-full h-full flex items-center justify-center">
+          <Spiner />
+        </div>
       ) : (
         <>
           <div className="">
             <TablesDefault
               headTable={headTable}
               tableBodies={tableBodies}
-              dataTable={dtMatkul.data}
+              dataTable={dtTransaksi.data}
               page={page}
               limit={limit}
               setEdit={setEdit}
@@ -75,11 +79,11 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               hapus={true}
             />
           </div>
-          {dtMatkul?.last_page > 1 && (
+          {dtTransaksi?.last_page > 1 && (
             <div className="mt-4">
               <PaginationDefault
-                currentPage={dtMatkul?.current_page}
-                totalPages={dtMatkul?.last_page}
+                currentPage={dtTransaksi?.current_page}
+                totalPages={dtTransaksi?.last_page}
                 setPage={setPage}
               />
             </div>

@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="acid">
+    <html lang="en" data-theme="aqua">
       <body className="font-Cambria">{children}</body>
     </html>
   );

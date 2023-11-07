@@ -22,7 +22,7 @@ const InputTextSearch: FC<Props> = ({
   return (
     <div className={addClass}>
       <input
-        className="w-full text-gray-700 px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-secondary"
+        className="w-full text-gray-700 px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-secondary bg-white"
         placeholder={placeholder}
         onChange={handleInputChange}
         defaultValue={defaultValue}

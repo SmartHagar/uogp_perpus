@@ -1,13 +1,13 @@
 /** @format */
 "use client";
-import ButtonPrimary from "@/components/button/ButtonPrimary";
 import InputTextDefault from "@/components/input/InputTextDefault";
 import ModalDefault from "@/components/modal/ModalDefault";
 import toastShow from "@/utils/toast-show";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
-import useMatkul from "@/stores/crud/Matkul";
+import useTransaksi from "@/stores/crud/Transaksi";
+import BtnDefault from "@/components/button/BtnDefault";
 
 type Props = {
   showModal: boolean;
@@ -17,16 +17,19 @@ type Props = {
 
 type Inputs = {
   id: number | string;
-  kode: string;
-  nama: string;
-  singkat: string;
-  semester: string;
-  sks: string;
+  anggota_id: string | number;
+  katalog_id: string | number;
+  tgl_pinjam: string | Date;
+  tgl_kembali: string | Date;
+  denda: number;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // store
-  const { addData, updateData } = useMatkul();
+  const { addData, updateData } = useTransaksi();
+  // state
+  const [tgl_pinjam, setTgl_pinjam] = useState(new Date());
+  const [tgl_kembali, setTgl_kembali] = useState(new Date());
   // hook form
   const {
     register,
@@ -40,22 +43,18 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("kode", "");
-    setValue("nama", "");
-    setValue("singkat", "");
-    setValue("semester", "");
-    setValue("sks", "");
+    setValue("anggota_id", "");
+    setValue("katalog_id", "");
+    setValue("denda", 0);
   };
 
   // data edit
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("kode", dtEdit.kode);
-      setValue("nama", dtEdit.nama);
-      setValue("singkat", dtEdit.singkat);
-      setValue("semester", dtEdit.semester);
-      setValue("sks", dtEdit.sks);
+      setValue("anggota_id", dtEdit.anggota_id);
+      setValue("katalog_id", dtEdit.katalog_id);
+      setValue("denda", dtEdit.denda);
     } else {
       resetForm();
     }
@@ -83,7 +82,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
 
   return (
     <ModalDefault
-      title="Form Matkul"
+      title="Form Transaksi"
       showModal={showModal}
       setShowModal={setShowModal}
     >
@@ -99,10 +98,12 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
             watch={watch}
             setValue={setValue}
             showModal={showModal}
+            tgl_pinjam={tgl_pinjam}
+            setTgl_pinjam={setTgl_pinjam}
           />
         </div>
         <div>
-          <ButtonPrimary text="Simpan" onClick={handleSubmit(onSubmit)} />
+          <BtnDefault onClick={handleSubmit(onSubmit)}>Simpan</BtnDefault>
         </div>
       </form>
     </ModalDefault>

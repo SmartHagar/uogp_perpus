@@ -51,7 +51,7 @@ export const SelectDefault: FC<Props> = ({
         </select>
       </div>
       {/* jika type password */}
-      {errors?.type === "required" && (
+      {errors[name]?.type === "required" && (
         <p className="text-red-500 font-inter italic text-sm">
           {label} tidak boleh kosong
         </p>

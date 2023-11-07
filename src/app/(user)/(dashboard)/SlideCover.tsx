@@ -2,13 +2,18 @@
 "use client";
 import React, { FC, useEffect, useRef, useState } from "react";
 // import Swiper core and required modules
-import { Pagination, Autoplay, FreeMode } from "swiper/modules";
+import {
+  Pagination,
+  Autoplay,
+  FreeMode,
+  EffectCoverflow,
+} from "swiper/modules";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
+import "swiper/css/effect-coverflow";
 import Reveal from "@/utils/Reveal";
 import Image from "next/image";
 
@@ -17,7 +22,7 @@ type Props = {
   slidesPerView?: number;
 };
 
-const Slide: FC<Props> = ({ delay = 2500, slidesPerView = 5 }) => {
+const SlideCover: FC<Props> = ({ delay = 2500, slidesPerView = 5 }) => {
   const swiperRef = useRef<any>(null);
 
   const playContinue = () => {
@@ -50,11 +55,20 @@ const Slide: FC<Props> = ({ delay = 2500, slidesPerView = 5 }) => {
     dataImg.length > 0 && (
       <Swiper
         ref={swiperRef}
-        slidesPerView={slidesPerView}
+        effect={"coverflow"}
         spaceBetween={10}
-        modules={[Pagination, Autoplay, FreeMode]}
+        modules={[Pagination, Autoplay, FreeMode, EffectCoverflow]}
         loop={true}
-        dir="rtl"
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={slidesPerView}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        }}
         autoplay={{
           delay,
           pauseOnMouseEnter: true,
@@ -81,7 +95,7 @@ const Slide: FC<Props> = ({ delay = 2500, slidesPerView = 5 }) => {
                 backgroundPosition: "center",
               }}
             >
-              <div className="hvTopDown  bg-neutral-content/[0.3] after:rounded-xl after:bg-primary-content/60 after:backdrop-blur-sm h-full hover:text-base-content p-6 flex flex-col items-center justify-end gap-4 z-0">
+              <div className="hvTopDown bg-neutral-content/[0.3] after:rounded-xl after:bg-primary-content/60 after:backdrop-blur-sm h-full hover:text-base-content p-6 flex flex-col items-center justify-end gap-4 z-0">
                 <h3 className="text-center font-bold lg:text-2xl">Judul</h3>
                 <div>
                   <p className="text-center text-sm lg:text-xl">Penulis</p>
@@ -96,4 +110,4 @@ const Slide: FC<Props> = ({ delay = 2500, slidesPerView = 5 }) => {
   );
 };
 
-export default Slide;
+export default SlideCover;

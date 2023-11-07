@@ -6,8 +6,7 @@
 // 127.0.0.1
 
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
+  output: "export",
   images: {
     unoptimized: true,
     remotePatterns: [

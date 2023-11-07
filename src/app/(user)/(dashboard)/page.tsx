@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Slide from "./Slide";
 import { RiCodeSSlashLine, RiDvLine, RiSlideshowLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
+import SlideCover from "./SlideCover";
 type Props = {};
 
 const Dashboard = (props: Props) => {
@@ -31,7 +32,7 @@ const Dashboard = (props: Props) => {
         <h4 className="text-xl font-bold text-secondary mb-2">
           Koleksi Terbaru
         </h4>
-        <Slide delay={2000} slidesPerView={slide} />
+        <SlideCover slidesPerView={slide} />
       </div>
       <div className="h-64 md:h-96 lg:h-[25rem] z-10 mb-2 flex flex-col">
         <h4 className="text-xl font-bold text-secondary">Koleksi Populer</h4>

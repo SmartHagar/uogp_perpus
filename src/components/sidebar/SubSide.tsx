@@ -1,6 +1,7 @@
 /** @format */
-
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { FC } from "react";
 
 type Props = {
@@ -12,6 +13,8 @@ type Props = {
 };
 
 const SubSide: FC<Props> = ({ index, menus, name, slug, href }) => {
+  const pathname = usePathname();
+
   return (
     <li key={index}>
       <details>

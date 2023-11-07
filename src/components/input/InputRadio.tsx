@@ -22,14 +22,14 @@ const InputRadio: FC<Props> = ({
 }) => {
   return (
     <div>
-      <div className="flex gap-1 items-start">
+      <div className="flex gap-1 items-center">
         <input
           type="radio"
           value={value}
           id={id.toString()}
           name={name}
           {...register(name, { required })}
-          className={`form-radio h-6 w-4 text-primary`}
+          className={`h-4 w-4 radio radio-primary`}
           defaultChecked={defaultChecked}
         />
         <label htmlFor={id.toString()}>{value}</label>

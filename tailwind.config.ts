@@ -22,7 +22,7 @@ const config: Config = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["winter", "acid"],
+    themes: ["winter", "acid", "aqua"],
   },
 };
 export default config;

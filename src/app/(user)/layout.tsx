@@ -10,15 +10,19 @@ type Props = {
 
 const layout = (props: Props) => {
   return (
-    <div className="min-h-screen h-screen flex flex-col">
+    <div className="min-h-screen h-screen flex flex-col bg-neutral-content">
       {/* navbar */}
-      <div className="fixed left-0 right-0 z-50 shadow-lg shadow-primary-content">
+      <div className="fixed left-0 right-0 z-50 shadow-sm shadow-primary-content">
         <Navbar />
       </div>
       {/* content */}
-      <div className="w-full pt-[6.5rem] px-4 lg:px-20">{props.children}</div>
+      <div className="w-full bg-neutral-content pt-[6.5rem] px-4 lg:px-20 text-accent-content pb-10">
+        {props.children}
+      </div>
       {/* footer */}
-      <FooterComp />
+      <div>
+        <FooterComp />
+      </div>
     </div>
   );
 };

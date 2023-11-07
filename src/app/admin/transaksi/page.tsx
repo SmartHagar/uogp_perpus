@@ -68,9 +68,11 @@ const Transaksi = () => {
         />
         <div className="mb-4 flex justify-between">
           <p>Silahkan mengolah data transaksi {status}</p>
-          <div>
-            <BtnDefault onClick={handleTambah}>Tambah</BtnDefault>
-          </div>
+          {status !== "pengembalian" && (
+            <div>
+              <BtnDefault onClick={handleTambah}>Tambah</BtnDefault>
+            </div>
+          )}
         </div>
         <InputTextSearch
           placeholder="Cari Transaksi"

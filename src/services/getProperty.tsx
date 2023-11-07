@@ -3,7 +3,7 @@
 import React from "react";
 import { BASE_URL } from "./baseURL";
 import Image from "next/image";
-import moment from "moment";
+import myMoment from "@/utils/myMoment";
 
 const getProperty = (obj: any, prop: any) => {
   let parts = prop.split(".");
@@ -24,8 +24,8 @@ const getProperty = (obj: any, prop: any) => {
     if (prop === "prodi_id") {
     }
 
-    if (prop === "tgl_mulai" || prop === "tgl_selesai") {
-      return moment(obj).format("DD/MM/YYYY");
+    if (prop === "tgl_pinjam" || prop === "tgl_kembali") {
+      return myMoment(obj).format("DD/MMM/YYYY");
     }
 
     if (prop === "image" || prop === "foto" || prop === "cover") {

@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
 import useTransaksi from "@/stores/crud/Transaksi";
 import BtnDefault from "@/components/button/BtnDefault";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   showModal: boolean;
@@ -22,6 +23,8 @@ type Inputs = {
   tgl_pinjam: string | Date;
   tgl_kembali: string | Date;
   denda: number;
+  status: string;
+  jenis: string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
@@ -29,7 +32,10 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   const { addData, updateData } = useTransaksi();
   // state
   const [tgl_pinjam, setTgl_pinjam] = useState(new Date());
-  const [tgl_kembali, setTgl_kembali] = useState(new Date());
+  const [tgl_kembali, setTgl_kembali] = useState<Date | string>("");
+  // get params
+  const params = useSearchParams();
+  const status = (params && params.get("status")) || "";
   // hook form
   const {
     register,
@@ -45,6 +51,11 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
     setValue("id", "");
     setValue("anggota_id", "");
     setValue("katalog_id", "");
+    setValue("tgl_pinjam", new Date());
+    setValue("tgl_kembali", "");
+    setTgl_pinjam(new Date());
+    setTgl_kembali("");
+    setValue("jenis", "");
     setValue("denda", 0);
   };
 
@@ -54,7 +65,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
       setValue("id", dtEdit.id);
       setValue("anggota_id", dtEdit.anggota_id);
       setValue("katalog_id", dtEdit.katalog_id);
-      setValue("denda", dtEdit.denda);
+      setValue("jenis", dtEdit.katalog.jenis);
     } else {
       resetForm();
     }
@@ -62,6 +73,8 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   }, [showModal, dtEdit]);
   // simpan data
   const onSubmit: SubmitHandler<Inputs> = async (row) => {
+    // add status in row
+    row.status = status; // Assuming `status` is the value you want to add to `row`
     console.log({ row });
     // jika dtEdit tidak kosong maka update
     if (dtEdit) {
@@ -100,6 +113,8 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
             showModal={showModal}
             tgl_pinjam={tgl_pinjam}
             setTgl_pinjam={setTgl_pinjam}
+            tgl_kembali={tgl_kembali}
+            setTgl_kembali={setTgl_kembali}
           />
         </div>
         <div>

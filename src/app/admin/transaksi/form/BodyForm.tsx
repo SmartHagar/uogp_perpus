@@ -6,6 +6,7 @@ import { SelectDefault } from "@/components/select/SelectDefault";
 import SelectFromDb from "@/components/select/SelectFromDB";
 import useAnggotaApi from "@/stores/api/Anggota";
 import useKatalogApi from "@/stores/api/Katalog";
+import { useSearchParams } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,8 +19,10 @@ type Props = {
   watch: any;
   setValue: any;
   showModal: boolean;
-  tgl_pinjam: Date;
+  tgl_pinjam: Date | string;
   setTgl_pinjam: (data: Date) => void;
+  setTgl_kembali: (data: Date) => void;
+  tgl_kembali: Date | string;
 };
 
 const BodyForm: FC<Props> = ({
@@ -32,12 +35,15 @@ const BodyForm: FC<Props> = ({
   showModal,
   tgl_pinjam,
   setTgl_pinjam,
+  setTgl_kembali,
+  tgl_kembali,
 }) => {
   // store
   const { setAnggotaAll, dtAnggota } = useAnggotaApi();
   const { setKatalogReady, dtKatalog } = useKatalogApi();
   // state
   const [selectKatalog, setSelectKatalog] = useState<boolean>();
+
   // memanggil data anggota
   const fetchDataAnggota = async ({ search }: any) => {
     await setAnggotaAll({
@@ -66,7 +72,7 @@ const BodyForm: FC<Props> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchJenis]);
-  console.log({ dtKatalog });
+
   return (
     <>
       {dtAnggota?.data && (
@@ -117,6 +123,16 @@ const BodyForm: FC<Props> = ({
         setStartDate={setTgl_pinjam}
         required
         errors={errors.tgl_pinjam}
+        addClass="col-span-4 lg:col-span-2"
+      />
+      <InputDate
+        label="Tgl. Kembali"
+        name="tgl_kembali"
+        control={control}
+        startDate={tgl_kembali}
+        setStartDate={setTgl_kembali}
+        required
+        errors={errors.tgl_kembali}
         addClass="col-span-4 lg:col-span-2"
       />
     </>

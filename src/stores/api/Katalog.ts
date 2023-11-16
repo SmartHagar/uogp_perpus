@@ -9,11 +9,13 @@ type Props = {
   limit?: number;
   search?: string;
   jenis?: string;
+  orderBy?: string;
+  sort?: string;
 };
 
 type Store = {
   dtKatalog: any;
-  setKatalog: ({ page, limit, search }: Props) => Promise<{
+  setKatalog: ({ page, limit, orderBy, sort, search }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
@@ -33,7 +35,7 @@ type Store = {
 const useKatalogApi = create(
   devtools<Store>((set, get) => ({
     dtKatalog: [],
-    setKatalog: async ({ page = 1, limit = 10, search }) => {
+    setKatalog: async ({ page = 1, limit = 10, orderBy, sort, search }) => {
       try {
         const response = await api({
           method: "get",
@@ -41,6 +43,8 @@ const useKatalogApi = create(
           params: {
             limit,
             page,
+            orderBy,
+            sort,
             search,
           },
         });

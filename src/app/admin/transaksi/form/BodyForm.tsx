@@ -43,6 +43,9 @@ const BodyForm: FC<Props> = ({
   const { setKatalogReady, dtKatalog } = useKatalogApi();
   // state
   const [selectKatalog, setSelectKatalog] = useState<boolean>();
+  // get params
+  const params = useSearchParams();
+  const status = (params && params.get("status")) || "";
 
   // memanggil data anggota
   const fetchDataAnggota = async ({ search }: any) => {
@@ -55,7 +58,7 @@ const BodyForm: FC<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModal]);
   // watch jenis
-  const watchJenis = watch("jenis");
+  const watchJenis = watch("jenis") || "";
   // memanggil data anggota
   const fetchDataKatalog = async ({ search, jenis }: any) => {
     await setKatalogReady({
@@ -68,11 +71,12 @@ const BodyForm: FC<Props> = ({
   useEffect(() => {
     setSelectKatalog(false);
     if (watchJenis) {
+      console.log({ watchJenis });
       fetchDataKatalog({ jenis: watchJenis });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchJenis]);
-
   return (
     <>
       {dtAnggota?.data && (
@@ -125,16 +129,18 @@ const BodyForm: FC<Props> = ({
         errors={errors.tgl_pinjam}
         addClass="col-span-4 lg:col-span-2"
       />
-      <InputDate
-        label="Tgl. Kembali"
-        name="tgl_kembali"
-        control={control}
-        startDate={tgl_kembali}
-        setStartDate={setTgl_kembali}
-        required
-        errors={errors.tgl_kembali}
-        addClass="col-span-4 lg:col-span-2"
-      />
+      {status === "pengembalian" && (
+        <InputDate
+          label="Tgl. Kembali"
+          name="tgl_kembali"
+          control={control}
+          startDate={tgl_kembali}
+          setStartDate={setTgl_kembali}
+          required
+          errors={errors.tgl_kembali}
+          addClass="col-span-4 lg:col-span-2"
+        />
+      )}
     </>
   );
 };

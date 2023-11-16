@@ -66,6 +66,10 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
       setValue("anggota_id", dtEdit.anggota_id);
       setValue("katalog_id", dtEdit.katalog_id);
       setValue("jenis", dtEdit.katalog.jenis);
+      setValue("tgl_pinjam", dtEdit.tgl_pinjam);
+      setValue("tgl_kembali", dtEdit.tgl_kembali);
+      setTgl_pinjam(new Date(dtEdit.tgl_pinjam));
+      setTgl_kembali(dtEdit.tgl_kembali ? new Date(dtEdit.tgl_kembali) : "");
     } else {
       resetForm();
     }

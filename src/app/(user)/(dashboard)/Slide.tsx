@@ -23,7 +23,7 @@ const Slide: FC<Props> = ({ delay = 2500, slidesPerView = 5 }) => {
   const playContinue = () => {
     if (swiperRef.current && swiperRef.current.swiper.autoplay) {
       setTimeout(() => {
-        swiperRef.current.swiper.autoplay.start();
+        swiperRef.current?.swiper?.autoplay?.start();
       }, 1000);
       // swiperRef.current.autoplay.start();
     }

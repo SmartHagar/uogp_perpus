@@ -68,10 +68,11 @@ const Navbar = (props: Props) => {
                   SubMenu(item?.subMenus, item.name, index, item.slug, pathname)
                 ) : (
                   <Link
+                    key={index}
                     className="whitespace-nowrap flex flex-col justify-center items-center"
                     href={item.href}
                   >
-                    <li key={index}>{item.name}</li>
+                    <li>{item.name}</li>
                     {href === pathname && (
                       <div className="border-b w-[70%] mx-auto"></div>
                     )}

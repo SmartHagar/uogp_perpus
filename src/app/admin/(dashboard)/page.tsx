@@ -5,6 +5,7 @@ import { getKatalogAll } from "@/lib/getKatalog";
 import React, { useEffect, useState } from "react";
 
 const Home = () => {
+  // state
   const [katalogData, setKatalogData] = useState<any>();
   // get katalog
   useEffect(() => {

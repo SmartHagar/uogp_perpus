@@ -1,14 +1,66 @@
 /** @format */
-
+"use client";
 import Sidebar from "@/components/sidebar/Sidebar";
 import ThemeChange from "@/components/support/ThemeChange";
-import React, { ReactNode } from "react";
+import useLogin from "@/stores/auth/login";
+import { usePathname, useRouter } from "next/navigation";
+import React, { ReactNode, useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import Spiner from "@/components/loading/Spiner";
 
 type Props = {
   children: ReactNode;
 };
 
-const layout = (props: Props) => {
+const Layout = (props: Props) => {
+  // state
+  const [isLoading, setIsLoading] = useState(true);
+  // pathname
+  const pathname = usePathname();
+  // route
+  const route = useRouter();
+  const { cekToken } = useLogin();
+  const getCek = async () => {
+    const res = await cekToken();
+    if (res?.error) {
+      // redirect to login
+      route.push("/login");
+    } else {
+      const role = Cookies.get("role");
+      if (role !== "admin") {
+        route.push(`/${role}`);
+      }
+    }
+    return res;
+  };
+
+  useEffect(() => {
+    getCek();
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  const loadData = async () => {
+    const cek = await getCek();
+    console.log({ cek });
+    if (!cek?.error) {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+    console.log("pertama render");
+    return () => {};
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen h-screen justify-center items-center">
+        <Spiner />
+      </div>
+    );
+  }
   return (
     <div className="h-screen w-screen flex flex-col bg-base-100">
       <div className="flex h-16 w-full items-center justify-between">
@@ -34,4 +86,4 @@ const layout = (props: Props) => {
   );
 };
 
-export default layout;
+export default Layout;

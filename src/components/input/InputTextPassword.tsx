@@ -52,7 +52,7 @@ const InputTextPassword: FC<Props> = ({
       {required && <span className="ml-1 text-red-600">*</span>}
       <div className="relative">
         <input
-          className="w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-secondary"
+          className="w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-secondary bg-white"
           type={
             type === "password" ? (isTypePassword ? "text" : "password") : type
           }

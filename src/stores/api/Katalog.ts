@@ -30,6 +30,11 @@ type Store = {
     data?: {};
     error?: {};
   }>;
+  setKatalogDetail: (id: number | string) => Promise<{
+    status: string;
+    data?: {};
+    error?: {};
+  }>;
 };
 
 const useKatalogApi = create(
@@ -92,6 +97,24 @@ const useKatalogApi = create(
           },
         });
         set((state) => ({ ...state, dtKatalog: response.data }));
+        return {
+          status: "berhasil",
+          data: response.data,
+        };
+      } catch (error: any) {
+        return {
+          status: "error",
+          error: error.response.data,
+        };
+      }
+    },
+    setKatalogDetail: async (id) => {
+      try {
+        const response = await api({
+          method: "get",
+          url: `/katalog/detail/${id}`,
+        });
+        set((state) => ({ ...state, dtKatalog: response.data?.data }));
         return {
           status: "berhasil",
           data: response.data,

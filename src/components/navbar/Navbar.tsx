@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Mobile from "./Mobile";
 import menus from "./menu";
 import MenuTypes from "@/types/MenuTypes";
@@ -10,6 +10,7 @@ import Link from "next/link";
 import SubMenu from "./SubMenu";
 import Dropdown from "./Dropdown";
 import ThemeChange from "../support/ThemeChange";
+import BtnOutline from "../button/BtnOutline";
 
 type Props = {};
 
@@ -18,9 +19,15 @@ type Props = {};
 const Navbar = (props: Props) => {
   const pathname = usePathname();
 
+  const router = useRouter();
+
+  const handleLogin = () => {
+    router.push("/login");
+  };
+
   return (
     <>
-      <div className="navbar bg-primary justify-between flex-row-reverse dark:bg-base-100 lg:px-20 lg:flex-row">
+      <div className="navbar justify-between flex-row-reverse bg-base-100 lg:px-20 lg:flex-row">
         <div className="flex-row-reverse justify-between  lg:justify-normal lg:flex-row">
           <div className="lg:hidden">
             <label className="swap swap-rotate">
@@ -81,7 +88,11 @@ const Navbar = (props: Props) => {
               })}
           </ul>
         </div>
-        {/* <div>Login</div> */}
+        <div>
+          <BtnOutline onClick={handleLogin} addClass="btn-primary">
+            Login
+          </BtnOutline>
+        </div>
       </div>
       <div className="absolute left-0 right-0">{/* <Mobile /> */}</div>
     </>

@@ -78,7 +78,7 @@ const SubMenu = (
       </span>
       <ul
         ref={dropdownMenuRef}
-        className="origin-top absolute right-0 left-4 mt-2 bg-primary dark:bg-base-100 w-fit hidden"
+        className="origin-top absolute right-0 left-4 mt-2 bg-base-100 w-fit hidden"
       >
         {menus &&
           menus.map((item: MenuTypes, index) => {

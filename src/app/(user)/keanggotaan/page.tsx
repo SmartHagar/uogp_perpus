@@ -12,10 +12,10 @@ const Sejarah = (props: Props) => {
       {/* visi misi */}
       <h2 className="text-4xl font-bold text-center">Keanggotaan</h2>
       <p>
-        Perpustakaan kemendikbudristek merupakan perpustakaan khusus yang
-        memiliki fungsi mendukung dan melayani organisasi induknya (Kemdikbud).
-        Keanggotaan Perpustakaan Kemdikbud terbuka bagi pegawai di lingkungan
-        Kemdikbud dan bagi masyarakat umum dengan persyaratan khusus
+        Perpustakaan UOGP terbuka untuk semua mahasiswa, dosen, dan staf
+        Universitas Ottow Geissler. Menjadi anggota perpustakaan memberikan Anda
+        akses ke berbagai sumber daya dan layanan perpustakaan. Untuk menjadi
+        anggota perpustakaan, anda harus melengkapi beberapa persyaratan.
       </p>
       {/* visi */}
       <div>

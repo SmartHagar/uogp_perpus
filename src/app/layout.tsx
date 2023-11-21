@@ -4,8 +4,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Laboratorium FST",
-  description: "Website Laboratorium Fakultas Sains & Teknologi",
+  title: "Perpustakaan UOGP",
+  description: "Website Perpustakaan Universitas Ottow Geissler Papua",
 };
 
 export default function RootLayout({

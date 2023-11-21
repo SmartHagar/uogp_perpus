@@ -16,6 +16,9 @@ import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import Reveal from "@/utils/Reveal";
 import Image from "next/image";
+// import BASE_URL
+import { BASE_URL } from "@/services/baseURL";
+import Link from "next/link";
 
 type Props = {
   delay?: number;
@@ -38,6 +41,8 @@ const SlideCover: FC<Props> = ({
       // swiperRef.current.autoplay.start();
     }
   };
+
+  // get base url
 
   return (
     katalogData?.length > 0 && (
@@ -73,30 +78,35 @@ const SlideCover: FC<Props> = ({
       >
         {katalogData.map((item: any, index: React.Key | null | undefined) => (
           <SwiperSlide key={index} className="h-full">
-            <div
-              className="rounded-xl"
-              style={{
-                width: "100%",
-                height: "100%",
-                backgroundImage: `url(${item.cover})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
+            <Link
+              href={`/katalog/detail?katalog_id=${item?.id}`}
+              target="_blank"
             >
-              <div className="hvTopDown bg-neutral-content/[0.3] after:rounded-xl after:bg-primary-content/60 after:backdrop-blur-sm h-full hover:text-base-content p-6 flex flex-col items-center justify-end gap-4 z-0">
-                <h3 className="text-center font-bold lg:text-xl">
-                  {item.judul}
-                </h3>
-                <div>
-                  <p className="text-center text-sm lg:text-lg">
-                    {item.penulis}
-                  </p>
-                  <p className="text-center text-sm lg:text-base">
-                    {item.tahun}
-                  </p>
+              <div
+                className="rounded-xl"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  backgroundImage: `url(${BASE_URL}/${item.cover})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="hvTopDown bg-neutral-content/[0.3] after:rounded-xl after:bg-primary-content/60 after:backdrop-blur-sm h-full hover:text-base-content p-6 flex flex-col items-center justify-end gap-4 z-0">
+                  <h3 className="text-center font-bold lg:text-xl">
+                    {item.judul}
+                  </h3>
+                  <div>
+                    <p className="text-center text-sm lg:text-lg">
+                      {item.penulis}
+                    </p>
+                    <p className="text-center text-sm lg:text-base">
+                      {item.tahun}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

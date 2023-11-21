@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import FormLogin from "./FormLogin";
 import Spiner from "@/components/loading/Spiner";
 import BtnDefault from "@/components/button/BtnDefault";
+import Link from "next/link";
 
 type Props = {};
 type Inputs = {
@@ -75,7 +76,11 @@ const Login = (props: Props) => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login Sekarang!</h1>
           <p className="py-6">
-            Silahkan melakukan login untuk melanjutkan ke halaman admin.
+            Silahkan melakukan login untuk melanjutkan ke halaman admin, atau
+            anda bisa kembali ke{" "}
+            <Link className="underline" href="/">
+              Halaman Utama
+            </Link>
           </p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-neutral-content">

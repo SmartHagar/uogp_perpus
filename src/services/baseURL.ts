@@ -8,6 +8,8 @@ const url_auth = `${BASE_URL}/auth`;
 const url_api = `${BASE_URL}/api`;
 const url_crud = `${BASE_URL}/crud`;
 const url_storage = `${BASE_URL}/storage`;
+// this link
+const THIS_URL = "http://localhost:3000";
 
 const auth = axios.create({
   baseURL: url_auth,
@@ -32,4 +34,5 @@ export {
   url_api,
   url_crud,
   url_storage,
+  THIS_URL,
 };

@@ -1,8 +1,6 @@
 /** @format */
 import {
-  BsFillMortarboardFill,
   BsHouseDoorFill,
-  BsLampFill,
   BsPeopleFill,
   BsQuestionOctagonFill,
 } from "react-icons/bs";

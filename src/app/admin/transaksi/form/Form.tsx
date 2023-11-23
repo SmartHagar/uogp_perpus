@@ -9,6 +9,7 @@ import BodyForm from "./BodyForm";
 import useTransaksi from "@/stores/crud/Transaksi";
 import BtnDefault from "@/components/button/BtnDefault";
 import { useSearchParams } from "next/navigation";
+import moment from "moment";
 
 type Props = {
   showModal: boolean;
@@ -24,7 +25,7 @@ type Inputs = {
   tgl_kembali: string | Date;
   denda: number;
   status: string;
-  jenis: string;
+  jenis?: string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
@@ -51,7 +52,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
     setValue("id", "");
     setValue("anggota_id", "");
     setValue("katalog_id", "");
-    setValue("tgl_pinjam", new Date());
+    setValue("tgl_pinjam", moment(new Date()).format("YYYY-MM-DD"));
     setValue("tgl_kembali", "");
     setTgl_pinjam(new Date());
     setTgl_kembali("");
@@ -79,6 +80,8 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   const onSubmit: SubmitHandler<Inputs> = async (row) => {
     // add status in row
     row.status = status; // Assuming `status` is the value you want to add to `row`
+    // remove jenis from row
+    delete row.jenis;
     console.log({ row });
     // jika dtEdit tidak kosong maka update
     if (dtEdit) {

@@ -77,6 +77,7 @@ const BodyForm: FC<Props> = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchJenis]);
+  console.log({ dtEdit });
   return (
     <>
       {dtAnggota?.data && (
@@ -92,32 +93,38 @@ const BodyForm: FC<Props> = ({
           addClass="col-span-4"
         />
       )}
-      <SelectDefault
-        label="Jenis Katalog"
-        defaultOption="Pilih Jenis"
-        register={register}
-        errors={errors}
-        name="jenis"
-        options={[
-          { value: "buku", label: "Buku" },
-          { value: "jurnal", label: "Jurnal" },
-          { value: "tugas akhir", label: "Tugas Akhir" },
-        ]}
-        addClass="col-span-4 lg:col-span-1"
-        required
-      />
-      {selectKatalog && dtKatalog?.data && (
-        <SelectFromDb
-          label="Katalog"
-          placeholder="Pilih Katalog"
-          name="katalog_id"
-          dataDb={dtKatalog?.data}
-          body={["id", "judul", "penulis", "tahun"]}
-          control={control}
-          required
-          errors={errors.katalog_id}
-          addClass="col-span-4 lg:col-span-3 "
-        />
+      {dtEdit ? (
+        <div className="col-span-4">{dtEdit?.katalog?.judul}</div>
+      ) : (
+        <>
+          <SelectDefault
+            label="Jenis Katalog"
+            defaultOption="Pilih Jenis"
+            register={register}
+            errors={errors}
+            name="jenis"
+            options={[
+              { value: "buku", label: "Buku" },
+              { value: "jurnal", label: "Jurnal" },
+              { value: "tugas akhir", label: "Tugas Akhir" },
+            ]}
+            addClass="col-span-4 lg:col-span-1"
+            required
+          />
+          {selectKatalog && dtKatalog?.data && (
+            <SelectFromDb
+              label="Katalog"
+              placeholder="Pilih Katalog"
+              name="katalog_id"
+              dataDb={dtKatalog?.data}
+              body={["id", "judul", "penulis", "tahun"]}
+              control={control}
+              required
+              errors={errors.katalog_id}
+              addClass="col-span-4 lg:col-span-3 "
+            />
+          )}
+        </>
       )}
       <InputDate
         label="Tgl. Peminjaman"

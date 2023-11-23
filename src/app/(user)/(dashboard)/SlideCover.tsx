@@ -76,39 +76,45 @@ const SlideCover: FC<Props> = ({
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => {}}
       >
-        {katalogData.map((item: any, index: React.Key | null | undefined) => (
-          <SwiperSlide key={index} className="h-full">
-            <Link
-              href={`/katalog/detail?katalog_id=${item?.id}`}
-              target="_blank"
-            >
-              <div
-                className="rounded-xl"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  backgroundImage: `url(${BASE_URL}/${item.cover})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
+        {katalogData.map((item: any, index: React.Key | null | undefined) => {
+          const slug = item.judul
+            .toLowerCase()
+            .replace(/ /g, "-")
+            .replace(/[^\w-]+/g, "");
+          return (
+            <SwiperSlide key={index} className="h-full">
+              <Link
+                href={`/katalog/detail?katalog_id=${item?.id}&judul=${slug}`}
+                target="_blank"
               >
-                <div className="hvTopDown bg-neutral-content/[0.3] after:rounded-xl after:bg-primary-content/60 after:backdrop-blur-sm h-full hover:text-base-content p-6 flex flex-col items-center justify-end gap-4 z-0">
-                  <h3 className="text-center font-bold lg:text-xl">
-                    {item.judul}
-                  </h3>
-                  <div>
-                    <p className="text-center text-sm lg:text-lg">
-                      {item.penulis}
-                    </p>
-                    <p className="text-center text-sm lg:text-base">
-                      {item.tahun}
-                    </p>
+                <div
+                  className="rounded-xl"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: `url(${BASE_URL}/${item.cover})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div className="hvTopDown bg-neutral-content/[0.3] after:rounded-xl after:bg-primary-content/60 after:backdrop-blur-sm h-full hover:text-base-content p-6 flex flex-col items-center justify-end gap-4 z-0">
+                    <h3 className="text-center font-bold lg:text-xl">
+                      {item.judul}
+                    </h3>
+                    <div>
+                      <p className="text-center text-sm lg:text-lg">
+                        {item.penulis}
+                      </p>
+                      <p className="text-center text-sm lg:text-base">
+                        {item.tahun}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </SwiperSlide>
-        ))}
+              </Link>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     )
   );

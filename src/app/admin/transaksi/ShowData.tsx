@@ -47,7 +47,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     setPage(1);
     fetchDataTransaksi();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [search, status]);
 
   // table
   const headTable = ["No", "Anggota", "Judul", "Tgl. Pinjam", "Aksi"];

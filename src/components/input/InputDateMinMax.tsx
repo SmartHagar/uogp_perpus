@@ -14,10 +14,11 @@ type Props = {
   label: string;
   startDate: any;
   setStartDate: any;
-  includeDateIntervals: any;
+  minDate?: any;
+  maxDate?: any;
 };
 
-const InputDateIncludeIntervals: FC<Props> = ({
+const InputDateMinMax: FC<Props> = ({
   control,
   required,
   name,
@@ -26,7 +27,8 @@ const InputDateIncludeIntervals: FC<Props> = ({
   label,
   startDate,
   setStartDate,
-  includeDateIntervals,
+  minDate,
+  maxDate,
 }) => {
   return (
     <div className={addClass}>
@@ -57,9 +59,10 @@ const InputDateIncludeIntervals: FC<Props> = ({
             showMonthDropdown
             showYearDropdown
             dropdownMode="select"
-            className="w-full border rounded-lg py-2 px-4"
-            includeDateIntervals={includeDateIntervals}
+            className="w-full border rounded-lg py-2 px-4 bg-white"
             placeholderText="dd/mm/yyyy"
+            minDate={minDate}
+            maxDate={maxDate}
           />
         )}
       />
@@ -72,4 +75,4 @@ const InputDateIncludeIntervals: FC<Props> = ({
   );
 };
 
-export default InputDateIncludeIntervals;
+export default InputDateMinMax;

@@ -1,11 +1,13 @@
 /** @format */
 "use client";
 import InputDate from "@/components/input/InputDate";
+import InputDateMinMax from "@/components/input/InputDateMinMax";
 import InputTextDefault from "@/components/input/InputTextDefault";
 import { SelectDefault } from "@/components/select/SelectDefault";
 import SelectFromDb from "@/components/select/SelectFromDB";
 import useAnggotaApi from "@/stores/api/Anggota";
 import useKatalogApi from "@/stores/api/Katalog";
+import moment from "moment";
 import { useSearchParams } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 
@@ -71,13 +73,37 @@ const BodyForm: FC<Props> = ({
   useEffect(() => {
     setSelectKatalog(false);
     if (watchJenis) {
-      console.log({ watchJenis });
       fetchDataKatalog({ jenis: watchJenis });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchJenis]);
-  console.log({ dtEdit });
+
+  // watch tgl_kembali dan tgl_pinjam
+  const tglPinjam = watch("tgl_pinjam");
+  const tglKembali = watch("tgl_kembali");
+
+  // count days between tgl_pinjam and tgl_kembali with moment
+  const countDays = () => {
+    if (tglPinjam && tglKembali) {
+      const diff = moment(tglKembali).diff(moment(tglPinjam), "days");
+      // jika lebih dari 4
+      if (diff > 4) {
+        const selisih = diff - 4;
+        const denda = selisih * 5000;
+        setValue("denda", denda);
+      } else {
+        setValue("denda", 0);
+      }
+    }
+  };
+
+  // memanggil count days ketika tgl_pinjam dan tgl_kembali berubah
+  useEffect(() => {
+    countDays();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tglPinjam, tglKembali]);
+
   return (
     <>
       {dtAnggota?.data && (
@@ -136,17 +162,32 @@ const BodyForm: FC<Props> = ({
         errors={errors.tgl_pinjam}
         addClass="col-span-4 lg:col-span-2"
       />
-      {status === "pengembalian" && (
-        <InputDate
-          label="Tgl. Kembali"
-          name="tgl_kembali"
-          control={control}
-          startDate={tgl_kembali}
-          setStartDate={setTgl_kembali}
-          required
-          errors={errors.tgl_kembali}
-          addClass="col-span-4 lg:col-span-2"
-        />
+      {status === "pengembalian" && dtEdit.tgl_pinjam && (
+        <>
+          <InputDateMinMax
+            label="Tgl. Kembali"
+            name="tgl_kembali"
+            control={control}
+            startDate={tgl_kembali}
+            setStartDate={setTgl_kembali}
+            required
+            errors={errors.tgl_kembali}
+            addClass="col-span-4 lg:col-span-2"
+            // mindate tgl_pinjam
+            minDate={new Date(dtEdit?.tgl_pinjam)}
+          />
+          {/* // input disable denda */}
+          <InputTextDefault
+            label="Denda (Rp.)"
+            name="denda"
+            register={register}
+            maxLength={12}
+            required
+            errors={errors.denda}
+            addClass="col-span-4"
+            readOnly
+          />
+        </>
       )}
     </>
   );

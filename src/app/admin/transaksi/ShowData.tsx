@@ -57,6 +57,9 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     const index = headTable.length - 1;
     headTable.splice(index, 0, "Tgl. Kembali");
     tableBodies.splice(index, 0, "tgl_kembali");
+    const index2 = headTable.length - 1;
+    headTable.splice(index2, 0, "Denda");
+    tableBodies.splice(index2, 0, "denda");
   }
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">

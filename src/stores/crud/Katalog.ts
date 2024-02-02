@@ -17,7 +17,7 @@ type Props = {
 type Store = {
   dtKatalog: any;
   showKatalog: any;
-  setKatalog: ({ page = 1, limit = 10, search, jenis }: Props) => Promise<{
+  setKatalog: ({ page, limit, search, jenis }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};

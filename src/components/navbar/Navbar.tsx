@@ -22,6 +22,7 @@ const Navbar = (props: Props) => {
   const router = useRouter();
 
   const handleLogin = () => {
+    console.log({ pathname });
     router.push("/login");
   };
 

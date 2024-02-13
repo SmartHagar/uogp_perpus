@@ -68,7 +68,7 @@ const Navbar = (props: Props) => {
           </div>
         </div>
         <div className="hidden lg:flex justify-center w-full">
-          <ul className="menu menu-horizontal px-1 text-[16px]">
+          <ul className="menu menu-horizontal px-1 text-[16px] gap-x-4">
             {menus &&
               menus.map((item: MenuTypes, index) => {
                 const href = item.href;

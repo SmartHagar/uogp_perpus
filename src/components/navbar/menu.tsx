@@ -7,27 +7,27 @@ const menus = [
     icon: <BsHouseDoorFill />,
   },
 
-  {
-    name: "Profil",
-    href: "#",
-    slug: "profil",
-    icon: <BsPeopleFill />,
-    subMenus: [
-      {
-        name: "Sejarah",
-        href: "/profil/sejarah",
-      },
-      {
-        name: "Visi Misi",
-        href: "/profil/visiMisi",
-      },
+  // {
+  //   name: "Profil",
+  //   href: "#",
+  //   slug: "profil",
+  //   icon: <BsPeopleFill />,
+  //   subMenus: [
+  //     {
+  //       name: "Sejarah",
+  //       href: "/profil/sejarah",
+  //     },
+  //     {
+  //       name: "Visi Misi",
+  //       href: "/profil/visiMisi",
+  //     },
 
-      {
-        name: "Tata Tertip",
-        href: "/profil/tataTertib",
-      },
-    ],
-  },
+  //     {
+  //       name: "Tata Tertip",
+  //       href: "/profil/tataTertib",
+  //     },
+  //   ],
+  // },
 
   {
     name: "Keanggotaan",

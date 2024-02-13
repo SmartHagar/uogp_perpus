@@ -55,10 +55,10 @@ const SubMenu = (
   }, [pathname, slug]);
 
   return (
-    <li className="relative inline-block" key={index}>
+    <li className="relative inline-block -mx-4" key={index}>
       <span
         ref={dropdownButtonRef}
-        className={`inline-flex justify-center w-full`}
+        className={`inline-flex w-full`}
         onClick={toggleDropdown}
       >
         {name}

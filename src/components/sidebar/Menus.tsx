@@ -7,7 +7,7 @@ import {
 const adminMenus = [
   {
     name: "Dashboard",
-    href: "/admin",
+    href: "/admin/dashboard",
     icon: <BsHouseDoorFill />,
   },
   {

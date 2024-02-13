@@ -33,7 +33,7 @@ const Login = (props: Props) => {
       if (!cekAuth?.error) {
         const role = cekAuth?.data?.data?.user?.role;
         // redirect to login
-        router.push(`/${role}`);
+        router.push(`/${role}/dashboard`);
       }
     }
     setIsLoading(false);
@@ -63,7 +63,7 @@ const Login = (props: Props) => {
       const { data } = res;
       Cookies.set("token", data.token);
       Cookies.set("role", data.role);
-      router.push(data.role);
+      router.push(`${data.role}/dashboard`);
     }
     setTimeout(() => {
       setIsLoading(false);

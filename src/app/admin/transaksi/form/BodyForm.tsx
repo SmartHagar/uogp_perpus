@@ -87,13 +87,23 @@ const BodyForm: FC<Props> = ({
   const countDays = () => {
     if (tglPinjam && tglKembali) {
       const diff = moment(tglKembali).diff(moment(tglPinjam), "days");
-      // jika lebih dari 4
-      if (diff > 4) {
-        const selisih = diff - 4;
-        const denda = selisih * 5000;
-        setValue("denda", denda);
+      // jika lebih dari 3
+      if (dtEdit?.keperluan === "Skripsi") {
+        if (diff > 6) {
+          const selisih = diff - 6;
+          const denda = selisih * 1000;
+          setValue("denda", denda);
+        } else {
+          setValue("denda", 0);
+        }
       } else {
-        setValue("denda", 0);
+        if (diff > 2) {
+          const selisih = diff - 2;
+          const denda = selisih * 1000;
+          setValue("denda", denda);
+        } else {
+          setValue("denda", 0);
+        }
       }
     }
   };
@@ -151,6 +161,22 @@ const BodyForm: FC<Props> = ({
             />
           )}
         </>
+      )}
+
+      {status === "peminjaman" && (
+        <SelectDefault
+          label="Keperluan"
+          defaultOption="Pilih Keperluan"
+          register={register}
+          errors={errors}
+          name="keperluan"
+          options={[
+            { value: "Lainnya", label: "Lainnya" },
+            { value: "Skripsi", label: "Skripsi" },
+          ]}
+          addClass="col-span-4 lg:col-span-2"
+          required
+        />
       )}
       <InputDate
         label="Tgl. Peminjaman"

@@ -34,6 +34,7 @@ const Anggota = () => {
     router.push(`katalog?jenis=${jenisWatch}&tahun=${tahunWatch}`);
 
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tahunWatch, jenisWatch]);
 
   const handleCetak = () => {

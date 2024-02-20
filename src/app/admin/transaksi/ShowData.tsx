@@ -50,8 +50,20 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   }, [search, status]);
 
   // table
-  const headTable = ["No", "Anggota", "Judul", "Tgl. Pinjam", "Aksi"];
-  const tableBodies = ["anggota.nama", "katalog.judul", "tgl_pinjam"];
+  const headTable = [
+    "No",
+    "Anggota",
+    "Judul",
+    "Keperluan",
+    "Tgl. Pinjam",
+    "Aksi",
+  ];
+  const tableBodies = [
+    "anggota.nama",
+    "katalog.judul",
+    "keperluan",
+    "tgl_pinjam",
+  ];
   // add tgl_kembali in index 5 if status = pengembalian
   if (status === "pengembalian") {
     const index = headTable.length - 1;

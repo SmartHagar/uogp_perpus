@@ -25,6 +25,7 @@ type Inputs = {
   tgl_kembali: string | Date;
   denda: number;
   status: string;
+  keperluan: string;
   jenis?: string;
 };
 
@@ -58,6 +59,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
     setTgl_kembali("");
     setValue("jenis", "");
     setValue("denda", 0);
+    setValue("keperluan", "");
   };
 
   // data edit
@@ -71,6 +73,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
       setValue("tgl_kembali", dtEdit.tgl_kembali);
       setTgl_pinjam(new Date(dtEdit.tgl_pinjam));
       setTgl_kembali(dtEdit.tgl_kembali ? new Date(dtEdit.tgl_kembali) : "");
+      setValue("keperluan", dtEdit.keperluan);
     } else {
       resetForm();
     }

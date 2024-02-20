@@ -60,6 +60,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // table
   const headTable = [
     "No",
+    "Class Sub",
     "Judul",
     "Penulis",
     "Penerbit",
@@ -69,6 +70,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     "Aksi",
   ];
   const tableBodies = [
+    "class_sub.nm_sub",
     "judul",
     "penulis",
     "penerbit",

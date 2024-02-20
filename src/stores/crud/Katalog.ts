@@ -43,6 +43,7 @@ const useKatalog = create(
     setFormData: (row: any) => {
       const formData = new FormData();
       formData.append("judul", row.judul);
+      formData.append("class_sub_id", row.class_sub_id);
       formData.append("penulis", row.penulis);
       formData.append("penerbit", row.penerbit);
       formData.append("jenis", row.jenis);

@@ -18,6 +18,7 @@ type Props = {
 
 type Inputs = {
   id: number | string;
+  class_sub_id: number | string;
   judul: string;
   penulis: string;
   penerbit: string;
@@ -48,6 +49,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
+    setValue("class_sub_id", "");
     setValue("judul", "");
     setValue("penulis", "");
     setValue("penerbit", "");
@@ -61,6 +63,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
+      setValue("class_sub_id", dtEdit.class_sub_id);
       setValue("judul", dtEdit.judul);
       setValue("penulis", dtEdit.penulis);
       setValue("penerbit", dtEdit.penerbit);

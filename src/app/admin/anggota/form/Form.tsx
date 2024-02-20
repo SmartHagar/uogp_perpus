@@ -119,7 +119,11 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
           />
         </div>
         <div>
-          <BtnDefault onClick={handleSubmit(onSubmit)} addClass="btn-primary">
+          <BtnDefault
+            type="submit"
+            onClick={handleSubmit(onSubmit)}
+            addClass="btn-primary"
+          >
             Simpan
           </BtnDefault>
         </div>

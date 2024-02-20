@@ -6,9 +6,11 @@ import toastShow from "@/utils/toast-show";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
-import useKatalog from "@/stores/crud/Katalog";
+import useClassUmum from "@/stores/crud/ClassUmum";
 import BtnDefault from "@/components/button/BtnDefault";
 import { useSearchParams } from "next/navigation";
+
+// form classUmum
 
 type Props = {
   showModal: boolean;
@@ -18,23 +20,13 @@ type Props = {
 
 type Inputs = {
   id: number | string;
-  judul: string;
-  penulis: string;
-  penerbit: string;
-  tahun: string | number;
-  stok: number;
-  cover: string;
-  jenis: string;
+  nomor: string | number;
+  nm_umum: string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
-  // state
-  const [myFile, setMyFile] = useState<any>();
-  // get params
-  const params = useSearchParams();
-  const jenis = (params && params.get("jenis")) || "";
   // store
-  const { addData, updateData } = useKatalog();
+  const { addData, updateData } = useClassUmum();
   // hook form
   const {
     register,
@@ -48,25 +40,15 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("judul", "");
-    setValue("penulis", "");
-    setValue("penerbit", "");
-    setValue("tahun", "");
-    setValue("stok", 1);
-    setValue("cover", "");
-    setMyFile(null);
+    setValue("nm_umum", "");
   };
 
   // data edit
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("judul", dtEdit.judul);
-      setValue("penulis", dtEdit.penulis);
-      setValue("penerbit", dtEdit.penerbit);
-      setValue("tahun", parseInt(dtEdit.tahun));
-      setValue("stok", dtEdit.stok);
-      setValue("cover", dtEdit.cover);
+      setValue("nm_umum", dtEdit.nm_umum);
+      setValue("nomor", dtEdit.nomor);
     } else {
       resetForm();
     }
@@ -75,8 +57,6 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // simpan data
   const onSubmit: SubmitHandler<Inputs> = async (row) => {
     console.log({ row });
-    // add jenis in row
-    row.jenis = jenis; // Assuming `jenis` is the value you want to add to `row`
     // jika dtEdit tidak kosong maka update
     if (dtEdit) {
       const { data } = await updateData(dtEdit.id, row);
@@ -96,7 +76,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
 
   return (
     <ModalDefault
-      title="Form Katalog"
+      title="Form ClassUmum"
       showModal={showModal}
       setShowModal={setShowModal}
     >
@@ -112,8 +92,6 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
             watch={watch}
             setValue={setValue}
             showModal={showModal}
-            myFile={myFile}
-            setMyFile={setMyFile}
           />
         </div>
         <div>

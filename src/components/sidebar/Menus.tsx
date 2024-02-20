@@ -11,6 +11,18 @@ const adminMenus = [
     icon: <BsHouseDoorFill />,
   },
   {
+    name: "Class",
+    href: "#",
+    slug: "kelas",
+    icon: <BsPeopleFill />,
+    subMenus: [
+      {
+        name: "Umum",
+        href: "/admin/kelas/umum",
+      },
+    ],
+  },
+  {
     name: "Katalog",
     href: "#",
     slug: "katalog",

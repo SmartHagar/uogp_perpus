@@ -67,6 +67,22 @@ const adminMenus = [
       },
     ],
   },
+  {
+    name: "Laporan",
+    href: "#",
+    slug: "laporan",
+    icon: <BsPeopleFill />,
+    subMenus: [
+      {
+        name: "Katalog",
+        href: "/admin/laporan/katalog",
+      },
+      {
+        name: "Anggota",
+        href: "/admin/laporan/anggota",
+      },
+    ],
+  },
 ];
 
 export { adminMenus };

@@ -9,6 +9,7 @@ type Props = {
   limit?: number;
   search?: string;
   jenis?: string;
+  tahun?: string | number;
   orderBy?: string;
   sort?: string;
 };
@@ -31,6 +32,11 @@ type Store = {
     error?: {};
   }>;
   setKatalogDetail: (id: number | string) => Promise<{
+    status: string;
+    data?: {};
+    error?: {};
+  }>;
+  setLapKatalog: ({ jenis, tahun }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};
@@ -115,6 +121,28 @@ const useKatalogApi = create(
           url: `/katalog/detail/${id}`,
         });
         set((state) => ({ ...state, dtKatalog: response.data?.data }));
+        return {
+          status: "berhasil",
+          data: response.data,
+        };
+      } catch (error: any) {
+        return {
+          status: "error",
+          error: error.response.data,
+        };
+      }
+    },
+    setLapKatalog: async ({ jenis, tahun }) => {
+      try {
+        const response = await api({
+          method: "get",
+          url: `/katalog/laporan`,
+          params: {
+            jenis,
+            tahun,
+          },
+        });
+        set((state) => ({ ...state, dtKatalog: response.data }));
         return {
           status: "berhasil",
           data: response.data,

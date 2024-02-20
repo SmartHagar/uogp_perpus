@@ -13,7 +13,7 @@ type Props = {
   required?: boolean;
   name: string;
   errors?: any;
-  addClass: any;
+  addClass?: any;
   menuPosition?: "fixed" | "absolute" | undefined;
   placeholder?: string;
 };

@@ -71,11 +71,11 @@ const Login = (props: Props) => {
   };
 
   return (
-    <div className="hero min-h-screen bg-base-content text-base-100">
-      <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="hero min-h-screen bg-bg-perpus text-base-100">
+      <div className="hero-content flex-col lg:flex-row-reverse bg-white/[0.4] backdrop-blur-sm rounded-lg">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login Sekarang!</h1>
-          <p className="py-6">
+          <p className="py-6 text-black">
             Silahkan melakukan login untuk melanjutkan ke halaman admin, atau
             anda bisa kembali ke{" "}
             <Link className="underline" href="/">

@@ -78,8 +78,10 @@ const Layout = (props: Props) => {
           <Sidebar />
         </div>
         {/* content */}
-        <div className="w-full h-full bg-neutral-content text-accent-content rounded-xl pt-6 px-6 overflow-auto">
-          {props.children}
+        <div className="bg-bg-perpus-1 bg-cover w-full h-full">
+          <div className="w-full h-full bg-neutral-content/[0.4] backdrop-blur text-accent-content rounded-xl pt-6 px-6 overflow-auto">
+            {props.children}
+          </div>
         </div>
       </div>
     </div>

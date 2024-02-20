@@ -1,7 +1,5 @@
 /** @format */
 "use client";
-import InputFile from "@/components/input/InputFile";
-import InputRadio from "@/components/input/InputRadio";
 import InputTextDefault from "@/components/input/InputTextDefault";
 import React, { FC, useEffect } from "react";
 

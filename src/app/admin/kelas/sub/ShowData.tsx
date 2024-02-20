@@ -2,7 +2,7 @@
 "use client";
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
-import useClassUmum from "@/stores/crud/ClassUmum";
+import useClassSub from "@/stores/crud/ClassSub";
 import React, { FC, useEffect, useState } from "react";
 import Spiner from "@/components/loading/Spiner";
 import { useSearchParams } from "next/navigation";
@@ -19,7 +19,7 @@ type Props = {
 };
 
 const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
-  const { setClassUmum, dtClassUmum } = useClassUmum();
+  const { setClassSub, dtClassSub } = useClassSub();
   // state
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
@@ -28,8 +28,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const params = useSearchParams();
   const jenis = (params && params.get("jenis")) || "";
 
-  const fetchDataClassUmum = async () => {
-    const res = await setClassUmum({
+  const fetchDataClassSub = async () => {
+    const res = await setClassSub({
       page,
       limit,
       search,
@@ -37,7 +37,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     setIsLoading(false);
   };
   useEffect(() => {
-    fetchDataClassUmum();
+    fetchDataClassSub();
 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,13 +45,13 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   // ketika search berubah
   useEffect(() => {
     setPage(1);
-    fetchDataClassUmum();
+    fetchDataClassSub();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   // table
-  const headTable = ["No", "Nomor", "Nama Class Umum", "Aksi"];
-  const tableBodies = ["nomor", "nm_umum"];
+  const headTable = ["No", "Nama Class Umum", "Nama Sub", "Aksi"];
+  const tableBodies = ["class_umum.nm_umum", "nm_sub"];
 
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
@@ -65,7 +65,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
             <TablesDefault
               headTable={headTable}
               tableBodies={tableBodies}
-              dataTable={dtClassUmum.data}
+              dataTable={dtClassSub.data}
               page={page}
               limit={limit}
               setEdit={setEdit}
@@ -74,11 +74,11 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               hapus={true}
             />
           </div>
-          {dtClassUmum?.last_page > 1 && (
+          {dtClassSub?.last_page > 1 && (
             <div className="mt-4">
               <PaginationDefault
-                currentPage={dtClassUmum?.current_page}
-                totalPages={dtClassUmum?.last_page}
+                currentPage={dtClassSub?.current_page}
+                totalPages={dtClassSub?.last_page}
                 setPage={setPage}
               />
             </div>

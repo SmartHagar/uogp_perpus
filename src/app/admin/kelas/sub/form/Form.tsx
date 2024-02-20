@@ -6,11 +6,11 @@ import toastShow from "@/utils/toast-show";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BodyForm from "./BodyForm";
-import useClassUmum from "@/stores/crud/ClassUmum";
+import useClassSub from "@/stores/crud/ClassSub";
 import BtnDefault from "@/components/button/BtnDefault";
 import { useSearchParams } from "next/navigation";
 
-// form classUmum
+// form classSub
 
 type Props = {
   showModal: boolean;
@@ -20,13 +20,13 @@ type Props = {
 
 type Inputs = {
   id: number | string;
-  nomor: string | number;
-  nm_umum: string;
+  class_umum_id: string | number;
+  nm_sub: string;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // store
-  const { addData, updateData } = useClassUmum();
+  const { addData, updateData } = useClassSub();
   // hook form
   const {
     register,
@@ -40,15 +40,15 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // reset form
   const resetForm = () => {
     setValue("id", "");
-    setValue("nm_umum", "");
+    setValue("nm_sub", "");
   };
 
   // data edit
   useEffect(() => {
     if (dtEdit) {
       setValue("id", dtEdit.id);
-      setValue("nm_umum", dtEdit.nm_umum);
-      setValue("nomor", dtEdit.nomor);
+      setValue("nm_sub", dtEdit.nm_sub);
+      setValue("class_umum_id", dtEdit.class_umum_id);
     } else {
       resetForm();
     }
@@ -76,7 +76,7 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
 
   return (
     <ModalDefault
-      title="Form ClassUmum"
+      title="Form ClassSub"
       showModal={showModal}
       setShowModal={setShowModal}
     >

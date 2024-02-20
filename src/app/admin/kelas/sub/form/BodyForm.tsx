@@ -1,8 +1,8 @@
 /** @format */
 "use client";
-import InputFile from "@/components/input/InputFile";
-import InputRadio from "@/components/input/InputRadio";
 import InputTextDefault from "@/components/input/InputTextDefault";
+import SelectFromDb from "@/components/select/SelectFromDB";
+import useClassUmumApi from "@/stores/api/ClassUmum";
 import React, { FC, useEffect } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -26,24 +26,39 @@ const BodyForm: FC<Props> = ({
   setValue,
   showModal,
 }) => {
+  const { setClassUmumAll, dtClassUmum } = useClassUmumApi();
+  // memanggil data classUmum
+  const fetchDataClassUmum = async ({ search }: any) => {
+    await setClassUmumAll({
+      search,
+    });
+  };
+  useEffect(() => {
+    fetchDataClassUmum({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showModal]);
   return (
     <>
+      {dtClassUmum?.data && (
+        <SelectFromDb
+          label="Class Umum"
+          placeholder="Pilih Class Umum"
+          name="class_umum_id"
+          dataDb={dtClassUmum?.data}
+          body={["id", "nm_umum"]}
+          control={control}
+          required
+          errors={errors.class_umum_id}
+          addClass="col-span-4 lg:col-span-2"
+        />
+      )}
       <InputTextDefault
-        label="Nomor"
-        name="nomor"
+        label="Nama Sub Class"
+        name="nm_sub"
         register={register}
         minLength={1}
         required
-        errors={errors.nomor}
-        addClass="col-span-4"
-      />
-      <InputTextDefault
-        label="Nama Class Umum"
-        name="nm_umum"
-        register={register}
-        minLength={1}
-        required
-        errors={errors.nm_umum}
+        errors={errors.nm_sub}
         addClass="col-span-4"
       />
     </>

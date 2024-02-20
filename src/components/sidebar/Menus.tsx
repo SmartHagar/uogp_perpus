@@ -20,6 +20,10 @@ const adminMenus = [
         name: "Umum",
         href: "/admin/kelas/umum",
       },
+      {
+        name: "Sub",
+        href: "/admin/kelas/sub",
+      },
     ],
   },
   {

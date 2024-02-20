@@ -15,8 +15,8 @@ type Props = {
   placeholder?: string;
   addClass: any;
   label?: string;
-  menuPosition?: any;
   defaultOptions?: boolean;
+  menuPosition?: "fixed" | "absolute" | undefined;
 };
 
 interface ICategory {
@@ -35,6 +35,7 @@ const SelectFromDb: FC<Props> = ({
   addClass,
   label,
   defaultOptions = true,
+  menuPosition,
 }) => {
   // style
   const styles: StylesConfig<any, true> = {
@@ -126,7 +127,7 @@ const SelectFromDb: FC<Props> = ({
             loadOptions={loadOptions}
             placeholder={placeholder}
             menuPlacement="auto"
-            menuPosition="fixed"
+            menuPosition={menuPosition}
             styles={styles}
             ref={ref}
             value={myOptions()?.find((x) => x.value === value) || null}

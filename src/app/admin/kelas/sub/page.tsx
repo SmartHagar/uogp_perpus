@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import ShowData from "./ShowData";
 import Form from "./form/Form";
 import ModalDelete from "@/components/modal/ModalDelete";
-import useClassUmum from "@/stores/crud/ClassUmum";
+import useClassSub from "@/stores/crud/ClassSub";
 import { Toaster } from "react-hot-toast";
 import toastShow from "@/utils/toast-show";
 import InputTextSearch from "@/components/input/InputTextSerch";
@@ -18,9 +18,9 @@ type Delete = {
   isDelete: boolean;
 };
 
-const ClassUmum = () => {
+const ClassSub = () => {
   // store
-  const { removeData } = useClassUmum();
+  const { removeData } = useClassSub();
   // state
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -64,7 +64,7 @@ const ClassUmum = () => {
           setDelete={setDelete}
         />
         <div className="mb-4 flex justify-between">
-          <p>Silahkan mengolah data classUmum</p>
+          <p>Silahkan mengolah data classSub</p>
           <div>
             <BtnDefault onClick={handleTambah} addClass="btn-primary">
               Tambah
@@ -72,7 +72,7 @@ const ClassUmum = () => {
           </div>
         </div>
         <InputTextSearch
-          placeholder="Cari ClassUmum"
+          placeholder="Cari ClassSub"
           onChange={(e) => setSearch(e)}
         />
       </div>
@@ -82,4 +82,4 @@ const ClassUmum = () => {
   );
 };
 
-export default ClassUmum;
+export default ClassSub;

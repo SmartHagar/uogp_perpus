@@ -14,7 +14,7 @@ type Props = {
   name: string;
   errors?: any;
   addClass: any;
-  menuPosition?: string;
+  menuPosition?: "fixed" | "absolute" | undefined;
   placeholder?: string;
 };
 
@@ -27,7 +27,7 @@ const SelectTahun: FC<Props> = ({
   name,
   errors,
   addClass,
-  menuPosition = "fixed" as any,
+  menuPosition,
   placeholder = "Pilih Tahun",
 }) => {
   const pilihTahun = () => {

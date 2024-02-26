@@ -88,7 +88,7 @@ const BodyForm: FC<Props> = ({
       <SelectTahun
         label="Tahun"
         name="tahun"
-        start={new Date().getFullYear() - 10}
+        start={new Date().getFullYear() - 50}
         end={new Date().getFullYear()}
         control={control}
         addClass="col-span-4 lg:col-span-2"

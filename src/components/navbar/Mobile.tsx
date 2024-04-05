@@ -1,44 +1,41 @@
 /** @format */
 
+import Link from "next/link";
 import React, { FC } from "react";
+import menus from "./menu";
+import MenuTypes from "@/types/MenuTypes";
 
 type Props = {};
 
 const Mobile: FC<Props> = () => {
   return (
     <ul className="menu bg-base-200 w-full rounded-box">
-      <li>
-        <a>Item 1</a>
-      </li>
-      <li>
-        <details open>
-          <summary>Parent</summary>
-          <ul>
-            <li>
-              <a>level 2 item 1</a>
-            </li>
-            <li>
-              <a>level 2 item 2</a>
-            </li>
-            <li>
+      {menus &&
+        menus.map((item: MenuTypes, index) => {
+          const href = item.href;
+          return item.subMenus ? (
+            <li key={index}>
               <details open>
                 <summary>Parent</summary>
                 <ul>
-                  <li>
-                    <a>level 3 item 1</a>
-                  </li>
-                  <li>
-                    <a>level 3 item 2</a>
-                  </li>
+                  {item.subMenus.map((menu, index) => (
+                    <li key={index}>
+                      <Link href={menu.href}>{menu.name}</Link>
+                    </li>
+                  ))}
                 </ul>
               </details>
             </li>
-          </ul>
-        </details>
-      </li>
-      <li>
-        <a>Item 3</a>
-      </li>
+          ) : (
+            <Link
+              key={index}
+              className="whitespace-nowrap ml-4 my-2"
+              href={item.href}
+            >
+              <li>{item.name}</li>
+            </Link>
+          );
+        })}
     </ul>
   );
 };

@@ -60,16 +60,21 @@ const Sejarah = (props: Props) => {
   // };
   return (
     <div className="flex flex-col gap-y-6 min-h-screen">
-      {/* visi misi */}
       <h2 className="text-4xl font-bold text-center">
         Koleksi <span className="capitalize">{jenis}</span>
       </h2>
-      <div className="flex gap-x-4 items-center">
+      <div className="flex gap-x-4 flex-col">
         <InputTextSearch
           addClass="w-full"
           placeholder="Cari Judul, Pengarang atau Penerbit"
           onChange={(e) => setSearch(e)}
         />
+        <h4 className="mt-2 text-lg">
+          Total{" "}
+          <span className="capitalize">
+            {jenis}: {katalogData?.total}
+          </span>
+        </h4>
       </div>
       {/* card buku */}
       <div>

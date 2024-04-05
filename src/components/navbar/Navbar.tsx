@@ -17,6 +17,9 @@ type Props = {};
 // dark=true light = false
 
 const Navbar = (props: Props) => {
+  const refCheck = useRef<HTMLDivElement>(null) as any;
+  // state
+  const [show, setShow] = useState<boolean>(false);
   const pathname = usePathname();
 
   const router = useRouter();
@@ -26,6 +29,21 @@ const Navbar = (props: Props) => {
     router.push("/login");
   };
 
+  const showMobile = () => {
+    // cek refCheck
+    if (refCheck.current?.checked) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  };
+  // jika pathname berubah
+  useEffect(() => {
+    setShow(false);
+
+    return () => {};
+  }, [pathname]);
+
   return (
     <>
       <div className="navbar justify-between flex-row-reverse bg-base-100 lg:px-20 lg:flex-row">
@@ -33,7 +51,7 @@ const Navbar = (props: Props) => {
           <div className="lg:hidden">
             <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
-              <input type="checkbox" />
+              <input type="checkbox" ref={refCheck} onClick={showMobile} />
 
               {/* hamburger icon */}
               <svg
@@ -95,7 +113,13 @@ const Navbar = (props: Props) => {
           </BtnOutline>
         </div>
       </div>
-      <div className="absolute left-0 right-0">{/* <Mobile /> */}</div>
+      <div
+        className={`absolute left-0 right-0 md:hidden ${
+          show ? "block" : "hidden"
+        }`}
+      >
+        <Mobile />
+      </div>
     </>
   );
 };

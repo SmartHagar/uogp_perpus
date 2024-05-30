@@ -3,9 +3,11 @@
 import PaginationDefault from "@/components/pagination/PaginationDefault";
 import TablesDefault from "@/components/tables/TablesDefault";
 import useAnggota from "@/stores/crud/Anggota";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Spiner from "@/components/loading/Spiner";
 import { useSearchParams } from "next/navigation";
+import slide from "./slide";
+import LightPlugins from "@/components/lightBox/LightPlugins";
 
 type DeleteProps = {
   id?: number | string;
@@ -24,6 +26,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [indexBox, setIndexBox] = useState<number>(-1);
+  const [slides, setSlides] = useState<any>();
   // get params
   const params = useSearchParams();
   const jenis = (params && params.get("jenis")) || "";
@@ -71,8 +75,15 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     "foto",
   ];
 
+  useEffect(() => {
+    setSlides(slide(dtAnggota.data));
+  }, [dtAnggota.data]);
+
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
+      {/* lightBox */}
+      <LightPlugins index={indexBox} setIndex={setIndexBox} slides={slides} />
+
       {isLoading ? (
         <div className="w-full h-full flex items-center justify-center">
           <Spiner />
@@ -90,6 +101,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               setDelete={setDelete}
               ubah={true}
               hapus={true}
+              setIndexBox={setIndexBox}
             />
           </div>
           {dtAnggota?.last_page > 1 && (

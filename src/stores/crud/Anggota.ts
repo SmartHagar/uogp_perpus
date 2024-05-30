@@ -17,7 +17,7 @@ type Props = {
 type Store = {
   dtAnggota: any;
   showAnggota: any;
-  setAnggota: ({ page = 1, limit = 10, search, tipe }: Props) => Promise<{
+  setAnggota: ({ page, limit, search, tipe }: Props) => Promise<{
     status: string;
     data?: {};
     error?: {};

@@ -49,6 +49,8 @@ const useAnggota = create(
       formData.append("alamat", row.alamat);
       formData.append("no_hp", row.no_hp);
       formData.append("foto", row.foto);
+      formData.append("tempat", row.tempat);
+      formData.append("tgl_lahir", row.tgl_lahir);
       return formData;
     },
     dtAnggota: [],

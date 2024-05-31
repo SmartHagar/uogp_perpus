@@ -27,11 +27,14 @@ type Inputs = {
   alamat: string;
   no_hp: string;
   foto: string;
+  tempat: string;
+  tgl_lahir: string | Date;
 };
 
 const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
   // state
   const [myFile, setMyFile] = useState<any>();
+  const [tgl_lahir, setTgl_lahir] = useState<Date | string>("");
   // get params
   const params = useSearchParams();
   const jenis = (params && params.get("jenis")) || "";
@@ -57,6 +60,8 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
     setValue("alamat", "");
     setValue("no_hp", "");
     setValue("foto", "");
+    setValue("tempat", "");
+    setValue("tgl_lahir", "");
     setMyFile(null);
   };
 
@@ -71,6 +76,9 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
       setValue("alamat", dtEdit.alamat);
       setValue("no_hp", dtEdit.no_hp);
       setValue("foto", dtEdit.foto);
+      setValue("tempat", dtEdit.tempat);
+      setValue("tgl_lahir", dtEdit.tgl_lahir);
+      setTgl_lahir(dtEdit.tgl_lahir ? new Date(dtEdit.tgl_lahir) : "");
     } else {
       resetForm();
     }
@@ -116,6 +124,8 @@ const Form = ({ showModal, setShowModal, dtEdit }: Props) => {
             showModal={showModal}
             myFile={myFile}
             setMyFile={setMyFile}
+            tgl_lahir={tgl_lahir}
+            setTgl_lahir={setTgl_lahir}
           />
         </div>
         <div>

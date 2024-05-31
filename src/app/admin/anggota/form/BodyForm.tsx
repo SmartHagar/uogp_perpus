@@ -1,12 +1,12 @@
 /** @format */
 "use client";
+import InputDate from "@/components/input/InputDate";
 import InputFile from "@/components/input/InputFile";
 import InputRadio from "@/components/input/InputRadio";
 import InputTextDefault from "@/components/input/InputTextDefault";
 import SelectFromDb from "@/components/select/SelectFromDB";
-import SelectTahun from "@/components/select/SelectTahun";
 import useProdiApi from "@/stores/api/Prodi";
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -20,6 +20,8 @@ type Props = {
   showModal: boolean;
   myFile: any;
   setMyFile: any;
+  setTgl_lahir: (data: Date) => void;
+  tgl_lahir: Date | string;
 };
 
 const BodyForm: FC<Props> = ({
@@ -32,6 +34,8 @@ const BodyForm: FC<Props> = ({
   showModal,
   myFile,
   setMyFile,
+  setTgl_lahir,
+  tgl_lahir,
 }) => {
   const { setProdi, dtProdi } = useProdiApi();
   // memanggil data prodi
@@ -124,6 +128,25 @@ const BodyForm: FC<Props> = ({
           )}
         </div>
       </div>
+      <InputTextDefault
+        label="Tempat Lahir"
+        name="tempat"
+        register={register}
+        minLength={1}
+        required
+        errors={errors.tempat}
+        addClass="col-span-4 lg:col-span-2"
+      />
+      <InputDate
+        label="Tgl. Lahir"
+        name="tgl_lahir"
+        control={control}
+        startDate={tgl_lahir}
+        setStartDate={setTgl_lahir}
+        required
+        errors={errors.tgl_lahir}
+        addClass="col-span-4 lg:col-span-2"
+      />
 
       <InputTextDefault
         label="Alamat"

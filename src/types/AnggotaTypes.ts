@@ -1,5 +1,7 @@
 /** @format */
 
+import ProdiTypes from "./ProdiTypes";
+
 // anggota
 interface AnggotaTypes {
   id: number | string;
@@ -10,6 +12,9 @@ interface AnggotaTypes {
   alamat: number | string;
   no_hp: string;
   foto: string;
+  tempat: string;
+  tgl_lahir: string;
+  prodi: ProdiTypes;
 }
 
 export default AnggotaTypes;

@@ -8,6 +8,10 @@ import Spiner from "@/components/loading/Spiner";
 import { useSearchParams } from "next/navigation";
 import slide from "./slide";
 import LightPlugins from "@/components/lightBox/LightPlugins";
+import { BsCardText } from "react-icons/bs";
+import ModalDefault from "@/components/modal/ModalDefault";
+import Detail from "./Detail";
+import AnggotaTypes from "@/types/AnggotaTypes";
 
 type DeleteProps = {
   id?: number | string;
@@ -28,6 +32,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [indexBox, setIndexBox] = useState<number>(-1);
   const [slides, setSlides] = useState<any>();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [dtDetail, setDtDetail] = useState<any>();
   // get params
   const params = useSearchParams();
   const jenis = (params && params.get("jenis")) || "";
@@ -60,6 +66,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     "NPM",
     "Prodi",
     "Jenkel",
+    "Tempat",
+    "Tgl. Lahir",
     "Alamat",
     "No_hp",
     "Foto",
@@ -70,6 +78,8 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     "NPM",
     "prodi.nama",
     "jenkel",
+    "tempat",
+    "tgl_lahir",
     "alamat",
     "no_hp",
     "foto",
@@ -79,8 +89,31 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
     setSlides(slide(dtAnggota.data));
   }, [dtAnggota.data]);
 
+  const costume = (data: AnggotaTypes) => {
+    return (
+      <BsCardText
+        className="w-6 h-6 cursor-context-menu"
+        onClick={() => handleDetail(data)}
+      />
+    );
+  };
+
+  const handleDetail = (row: AnggotaTypes) => {
+    setDtDetail(row);
+    setShowModal(true);
+  };
+
   return (
     <div className="flex-1 flex-col max-w-full h-full overflow-auto">
+      {/* detail */}
+      <ModalDefault
+        showModal={showModal}
+        setShowModal={setShowModal}
+        title="Detail Anggota"
+        width="36rem"
+      >
+        <Detail dtDetail={dtDetail} />
+      </ModalDefault>
       {/* lightBox */}
       <LightPlugins index={indexBox} setIndex={setIndexBox} slides={slides} />
 
@@ -102,6 +135,7 @@ const ShowData: FC<Props> = ({ setDelete, setEdit, search }) => {
               ubah={true}
               hapus={true}
               setIndexBox={setIndexBox}
+              costume={costume}
             />
           </div>
           {dtAnggota?.last_page > 1 && (

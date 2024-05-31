@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@media print {
+  /* Atur margin pada elemen yang ingin dicetak */
+  /* Atur margin halaman secara keseluruhan */
+  @page {
+    margin: 10px 10px; /* Ini mengatur margin pada seluruh halaman cetak */
+  }
+}
+
 @layer components {
   :root {
     --swiper-pagination-color: theme("colors.primary") !important;

@@ -19,35 +19,38 @@ const Detail: FC<Props> = ({ dtDetail }) => {
     content: () => componentRef.current,
   });
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-4 text-[12px] items-center">
       {/* card */}
-      <div ref={componentRef} className="flex flex-col w-[32rem]">
+      <div
+        ref={componentRef}
+        className="flex flex-col w-[25rem] border border-black"
+      >
         {/* cop */}
-        <div className="relative">
+        <div className="relative px-2 pt-1">
           <Image
             src="/img/uogp.png"
             alt="logo"
-            width={70}
-            height={70}
+            width={50}
+            height={50}
             priority
             className="absolute"
           />
         </div>
         <div className="flex flex-col items-center grow">
           <h3 className="uppercase font-bold">Biro Perpustakaan</h3>
-          <h3 className="uppercase font-bold text-lg">
+          <h3 className="uppercase font-bold text-sm">
             Universitas Ottow Geissler Papua
           </h3>
           <h3>Jln. Perkutut Kotaraja Dalam, Jayapura Papua</h3>
         </div>
         {/* ket */}
-        <div className="bg-cyan-300 p-4">
-          <h1 className="text-center uppercase font-bold text-lg">
+        <div className="bg-cyan-300 p-2">
+          <h1 className="text-center uppercase font-bold text-sm">
             Kartu Anggota Perpustakaan
           </h1>
         </div>
         {/* biodata */}
-        <div>
+        <div className="p-2">
           <div className="flex">
             <span className="w-28">Nama Lengkap</span>
             <span>: {dtDetail?.nama}</span>
@@ -75,15 +78,15 @@ const Detail: FC<Props> = ({ dtDetail }) => {
             </span>
           </div>
           {/* footer */}
-          <div className="flex justify-between">
-            <div className="relative w-[3cm] h-[4cm]">
+          <div className="flex justify-between mt-2">
+            <div className="relative w-[3cm] h-[4cm] border-2 border-black rounded-md">
               <Image src={`${BASE_URL}/${dtDetail?.foto}`} alt="foto" fill />
             </div>
-            <div className="mr-2 pt-4">
+            <div className="mr-2 pt-2">
               <h1 className="text-right">
                 Jayapura, {myMoment().format("LL")}
               </h1>
-              <div className="flex flex-col justify-between h-full mr-11 pt-4">
+              <div className="flex flex-col justify-between h-full mr-11 pt-2 pb-6">
                 <h1 className="text-center">KEPALA PERPUSTAKAAN</h1>
                 <h1 className="text-center">FONNEKE PANGAJOW, SE</h1>
               </div>

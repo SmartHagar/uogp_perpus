@@ -1,9 +1,9 @@
-1:HL["/_next/static/css/6ecf69a8af7a30a9.css","style",{"crossOrigin":""}]
-0:["Ul_jkd1SVQpdKaz_pKYqB",[[["",{"children":["(auth)",{"children":["login",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/6ecf69a8af7a30a9.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
+1:HL["/_next/static/css/d1074bda0f873746.css","style",{"crossOrigin":""}]
+0:["N3jAY23bU7Ent9696Oo9j",[[["",{"children":["(auth)",{"children":["login",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d1074bda0f873746.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
 4:I[6954,[],""]
 5:I[7264,[],""]
 b:I[8297,[],""]
-c:I[9883,["8447","static/chunks/00cbbcb7-c4d1fcfc38381fcb.js","5580","static/chunks/5580-9ad58e8cabbc3790.js","5166","static/chunks/5166-f44362e4d3c311ae.js","4","static/chunks/4-59082ca7d4dddf3f.js","1396","static/chunks/1396-0ec2637f08a7cf7f.js","4665","static/chunks/app/(auth)/login/page-c5c230789c8f475c.js"],""]
+c:I[9883,["8447","static/chunks/00cbbcb7-d1c9ada322c0c792.js","5580","static/chunks/5580-2dd77dfed63a1087.js","5166","static/chunks/5166-4f3968e73431a35a.js","4","static/chunks/4-b28da94f6eaf3209.js","1396","static/chunks/1396-9e75756d2881919f.js","4665","static/chunks/app/(auth)/login/page-e07dbc0c1adaf5eb.js"],""]
 6:{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"}
 7:{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"}
 8:{"display":"inline-block"}

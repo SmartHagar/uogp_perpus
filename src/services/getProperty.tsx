@@ -5,7 +5,12 @@ import Image from "next/image";
 import moment from "moment";
 import showRupiah from "./rupiah";
 
-const getProperty = (obj: any, prop: any, index: number, setIndexBox: any) => {
+const getProperty = (
+  obj: any,
+  prop: any,
+  index?: number,
+  setIndexBox?: any
+) => {
   const angkatan = obj?.thn_angkatan?.substring(2);
   const mhs_angkatan = obj?.mhs?.thn_angkatan?.substring(2);
   const jmlh_simpanan = obj?.simpanan;

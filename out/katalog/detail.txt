@@ -1,10 +1,10 @@
-1:HL["/_next/static/css/6ecf69a8af7a30a9.css","style",{"crossOrigin":""}]
-0:["Ul_jkd1SVQpdKaz_pKYqB",[[["",{"children":["(user)",{"children":["katalog",{"children":["detail",{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/6ecf69a8af7a30a9.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
+1:HL["/_next/static/css/d1074bda0f873746.css","style",{"crossOrigin":""}]
+0:["N3jAY23bU7Ent9696Oo9j",[[["",{"children":["(user)",{"children":["katalog",{"children":["detail",{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d1074bda0f873746.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
 4:I[6954,[],""]
 5:I[7264,[],""]
-6:I[9587,["8447","static/chunks/00cbbcb7-c4d1fcfc38381fcb.js","4758","static/chunks/4758-d3cb75824e1204d0.js","1396","static/chunks/1396-0ec2637f08a7cf7f.js","7743","static/chunks/app/(user)/layout-0d8859dda17f2f8b.js"],""]
+6:I[5365,["8447","static/chunks/00cbbcb7-d1c9ada322c0c792.js","4758","static/chunks/4758-65339169b8079e07.js","1396","static/chunks/1396-9e75756d2881919f.js","7743","static/chunks/app/(user)/layout-4098d6635b64f25e.js"],""]
 c:I[8297,[],""]
-d:I[8788,["5580","static/chunks/5580-9ad58e8cabbc3790.js","4758","static/chunks/4758-d3cb75824e1204d0.js","5166","static/chunks/5166-f44362e4d3c311ae.js","4970","static/chunks/app/(user)/katalog/detail/page-96f7382a619d9fd4.js"],""]
+d:I[8788,["5580","static/chunks/5580-2dd77dfed63a1087.js","4758","static/chunks/4758-65339169b8079e07.js","5166","static/chunks/5166-4f3968e73431a35a.js","4970","static/chunks/app/(user)/katalog/detail/page-dfb0af5791c10b47.js"],""]
 7:{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"}
 8:{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"}
 9:{"display":"inline-block"}

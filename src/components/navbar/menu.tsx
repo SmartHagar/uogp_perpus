@@ -31,7 +31,7 @@ const menus = [
 
   {
     name: "Keanggotaan",
-    href: "/keanggotaan",
+    href: "/keanggotaan/",
     icon: <BsHouseDoorFill />,
   },
 
@@ -43,15 +43,15 @@ const menus = [
     subMenus: [
       {
         name: "Buku",
-        href: "/katalog?jenis=buku",
+        href: "/katalog?jenis=buku/",
       },
       {
         name: "Jurnal",
-        href: "/katalog?jenis=jurnal",
+        href: "/katalog?jenis=jurnal/",
       },
       {
         name: "Tugas Akhir",
-        href: "/katalog?jenis=tugas akhir",
+        href: "/katalog?jenis=tugas akhir/",
       },
     ],
   },

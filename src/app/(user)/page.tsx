@@ -1,11 +1,10 @@
 /** @format */
 "use client";
 import React, { useEffect, useState } from "react";
-import Slide from "./Slide";
 import { RiCodeSSlashLine, RiDvLine, RiSlideshowLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
-import SlideCover from "./SlideCover";
 import getKatalog from "@/lib/getKatalog";
+import SlideCover from "./dashboard/SlideCover";
 type Props = {};
 
 const Dashboard = (props: Props) => {

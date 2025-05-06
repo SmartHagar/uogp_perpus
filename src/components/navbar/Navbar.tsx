@@ -26,7 +26,7 @@ const Navbar = (props: Props) => {
 
   const handleLogin = () => {
     console.log({ pathname });
-    router.push("/login");
+    router.push("/auth/login");
   };
 
   const showMobile = () => {

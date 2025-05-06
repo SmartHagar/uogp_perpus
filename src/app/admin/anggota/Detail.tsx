@@ -87,8 +87,8 @@ const Detail: FC<Props> = ({ dtDetail }) => {
                 Jayapura, {myMoment().format("LL")}
               </h1>
               <div className="flex flex-col justify-between h-full mr-11 pt-2 pb-6">
-                <h1 className="text-center">KEPALA PERPUSTAKAAN</h1>
-                <h1 className="text-center">FONNEKE PANGAJOW, SE</h1>
+                <h1 className="text-center capitalize">kepala perpustakaan</h1>
+                <h1 className="text-center">Rika R Atururi, S.Ptk</h1>
               </div>
             </div>
           </div>

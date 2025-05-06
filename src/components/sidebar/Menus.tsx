@@ -34,15 +34,15 @@ const adminMenus = [
     subMenus: [
       {
         name: "Buku",
-        href: "/admin/katalog?jenis=buku/",
+        href: "/admin/katalog?jenis=buku",
       },
       {
         name: "Jurnal",
-        href: "/admin/katalog?jenis=jurnal/",
+        href: "/admin/katalog?jenis=jurnal",
       },
       {
         name: "Tugas Akhir",
-        href: "/admin/katalog?jenis=tugas akhir/",
+        href: "/admin/katalog?jenis=tugas akhir",
       },
     ],
   },
@@ -59,11 +59,11 @@ const adminMenus = [
     subMenus: [
       {
         name: "Peminjaman",
-        href: "/admin/transaksi?status=peminjaman/",
+        href: "/admin/transaksi?status=peminjaman",
       },
       {
         name: "Pengembalian",
-        href: "/admin/transaksi?status=pengembalian/",
+        href: "/admin/transaksi?status=pengembalian",
       },
     ],
   },
